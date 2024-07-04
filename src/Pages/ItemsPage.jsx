@@ -50,11 +50,6 @@ function ItemsPage() {
         fetchProductData();
     }, [type]);
 
-    // Function to check if item should be blurred
-    const isBlurred = (itemId) => {
-        return products.some(product => product.productId === itemId);
-    };
-
     return (
         <>
             <div className=" ">
@@ -70,10 +65,10 @@ function ItemsPage() {
                     <div className="flex flex-wrap justify-center h-screen ">
 
                         {filteredProducts.map((item, index) => {
-                            const blurred = isBlurred(item.id);
+                            const isHidden = products.some(product => product.productId === item.id);
 
                             return (
-                                <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${products.productId==item.id ? 'hidden' : ''}`}>
+                                <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${isHidden ? 'hidden' : ''}`}>
                                     <Link to={{
                                         pathname: `/items/${type}/${item.id}/${item.Name}`,
                                         state: {
