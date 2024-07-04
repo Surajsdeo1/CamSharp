@@ -73,7 +73,7 @@ function ItemsPage() {
                             const blurred = isBlurred(item.id);
 
                             return (
-                                <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${products.productId==item.id ? 'opacity-50 pointer-events-none' : ''}`}>
+                                <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${products.productId==item.id ? 'hidden' : ''}`}>
                                     <Link to={{
                                         pathname: `/items/${type}/${item.id}/${item.Name}`,
                                         state: {
