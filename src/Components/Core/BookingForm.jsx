@@ -55,7 +55,7 @@ const BookingForm = () => {
         try {
 
 
-            const response = await fetch(`h${Config.BASE_URL}/api/booking`, {
+            const response = await fetch(`${Config.BASE_URL}/api/booking`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
