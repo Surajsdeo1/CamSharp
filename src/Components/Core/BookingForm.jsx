@@ -50,7 +50,7 @@ const BookingForm = () => {
         e.preventDefault();
 
         const token = sessionStorage.getItem('token'); // Assuming the token is stored in sessionStorage
-       
+        console.log(token);
         // data save in a db
         try {
 
