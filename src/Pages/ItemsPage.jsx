@@ -5,7 +5,7 @@ import CamData from "../Alldata/CamData";
 import LensData from "../Alldata/LensData";
 import AccessData from "../Alldata/AccessoriesData";
 import FooterBar from '../Components/Common/FooterBar';
-import Config from "../Config"; // Ensure Config is correctly imported
+import Config from "../utils/Config";// Ensure Config is correctly imported
 
 function ItemsPage() {
     let { type } = useParams(); // Reading URL parameter
@@ -58,6 +58,7 @@ function ItemsPage() {
 
                 <div id="item-list" className={`${primaryBg} text-gray-700 mt-12 sm:px-8 pt-1`}>
                     <div className="text-black text-center">
+                     
                         <span>
                             <h1 className="text-xl font-extrabold text-blue-600 border-b pb-1">{type}</h1>
                         </span>
