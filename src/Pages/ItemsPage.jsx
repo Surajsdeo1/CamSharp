@@ -21,7 +21,7 @@ function ItemsPage() {
         const fetchProductData = async () => {
             try {
                 // Make a GET request to fetch product data
-                const response = await fetch(`${Config.BASE_URL}/api/product`, {
+                const response = await fetch(`${Config.BASE_URL}/api/products`, {
                     method: 'GET',
                 });
 
