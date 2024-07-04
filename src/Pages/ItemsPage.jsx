@@ -1,24 +1,60 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import Navbar from "../Components/Common/Navbar";
 import CamData from "../Alldata/CamData";
 import LensData from "../Alldata/LensData";
 import AccessData from "../Alldata/AccessoriesData";
 import FooterBar from '../Components/Common/FooterBar';
+import Config from "../Config"; // Ensure Config is correctly imported
 
 function ItemsPage() {
     let { type } = useParams(); // Reading URL parameter
+    const [products, setProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
 
     // Define the color scheme
     const primaryText = "text-gray-700";
     const secondaryText = "text-gray-500";
     const primaryBg = "bg-white";
 
-   
-    
+    useEffect(() => {
+        const fetchProductData = async () => {
+            try {
+                // Make a GET request to fetch product data
+                const response = await fetch(`${Config.BASE_URL}/api/product`, {
+                    method: 'GET',
+                });
 
-   
+                if (!response.ok) {
+                    throw new Error('Failed to fetch product data');
+                }
+
+                // Extract product data from response
+                const data = await response.json();
+                setProducts(data); // Set the fetched data to state
+
+                // Filter products based on type (camera, lens, accessories) if needed
+                if (type === "camera") {
+                    setFilteredProducts(CamData);
+                } else if (type === "lens") {
+                    setFilteredProducts(LensData);
+                } else if (type === "accessories") {
+                    setFilteredProducts(AccessData);
+                }
+
+            } catch (error) {
+                console.log('Error:', error);
+            }
+        };
+
+        fetchProductData();
+    }, [type]);
+
+    // Function to check if item should be blurred
+    const isBlurred = (itemId) => {
+        return products.some(product => product.productId === itemId);
+    };
+
     return (
         <>
             <div className=" ">
@@ -33,13 +69,10 @@ function ItemsPage() {
                     </div>
                     <div className="flex flex-wrap justify-center h-screen ">
 
-                        {/* Item Cards */}
-                        {type === "camera" && (
-                            CamData.map((item, index) => {
-                              
-                              
-                              
-                                return (
+                        {filteredProducts.map((item, index) => {
+                            const blurred = isBlurred(item.id);
+                            return (
+                                <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${blurred ? 'opacity-50 pointer-events-none' : ''}`}>
                                     <Link to={{
                                         pathname: `/items/${type}/${item.id}/${item.Name}`,
                                         state: {
@@ -50,10 +83,10 @@ function ItemsPage() {
                                             amount: item.Amount,
                                             imgSrc: item.ImgSrc
                                         }
-                                    }} key={index}>
-                                        <div className={`item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 border-gray-600 mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer `}>
-                                            <div className="item-image ml-12 overflow-hidden rounded-lg border cursor-pointer" style={{ width: "", height: "" }}>
-                                                <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" style={{ width: "100px", height: "50%" }} />
+                                    }}>
+                                        <div className="item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 border-gray-600">
+                                            <div className="item-image ml-12 overflow-hidden rounded-lg border">
+                                                <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" />
                                             </div>
                                             <div className="item-details">
                                                 <h2 className={`text-sm font-bold ${primaryText}`}>{item.Name}</h2>
@@ -67,81 +100,9 @@ function ItemsPage() {
                                             </div>
                                         </div>
                                     </Link>
-                                );
-                            })
-                        )}
-
-                        {/* Item Cards */}
-                        {type === "lens" && (
-                            LensData.map((item, index) => {
-                             
-                                return (
-                                    <Link to={{
-                                        pathname: `/items/${type}/${item.id}/${item.Name}`,
-                                        state: {
-                                            type: type,
-                                            itemId: item.id,
-                                            name: item.Name,
-                                            day: item.Day,
-                                            amount: item.Amount,
-                                            imgSrc: item.ImgSrc
-                                        }
-                                    }} key={index}>
-                                        <div className={`item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 border-gray-600 mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer `}>
-                                            <div className="item-image ml-12 overflow-hidden rounded-lg border cursor-pointer" style={{ width: "", height: "" }}>
-                                                <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" style={{ width: "100px", height: "50%" }} />
-                                            </div>
-                                            <div className="item-details">
-                                                <h2 className={`text-sm font-bold ${primaryText}`}>{item.Name}</h2>
-                                                <h3 className={`${secondaryText}`}>{item.Day}</h3>
-                                            </div>
-                                            <div className="left-4 w-full text-center bg-blue-500 rounded">
-                                                <h4 className="flex items-center justify-center font-bold text-xl">
-                                                    <i className="text-sm p-1  fi fi-bs-indian-rupee-sign"></i>
-                                                    <span className=" pr-1">{item.Amount}</span>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })
-                        )}
-
-                        {/* Item Cards */}
-                        {type === "accessiores" && (
-                            AccessData.map((item, index) => {
-                              
-                                return (
-                                    <Link to={{
-                                        pathname: `/items/${type}/${item.id}/${item.Name}`,
-                                        state: {
-                                            type: type,
-                                            itemId: item.id,
-                                            name: item.Name,
-                                            day: item.Day,
-                                            amount: item.Amount,
-                                            imgSrc: item.ImgSrc
-                                        }
-                                    }} key={index}>
-                                        <div className={`item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 border-gray-600 mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer `}>
-                                            <div className="item-image ml-12 overflow-hidden rounded-lg border cursor-pointer" style={{ width: "", height: "" }}>
-                                                <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" style={{ width: "100px", height: "50%" }} />
-                                            </div>
-                                            <div className="item-details">
-                                                <h2 className={`text-sm font-bold ${primaryText}`}>{item.Name}</h2>
-                                                <h3 className={`${secondaryText}`}>{item.Day}</h3>
-                                            </div>
-                                            <div className="left-4 w-full text-center bg-blue-500 rounded">
-                                                <h4 className="flex items-center justify-center font-bold text-xl">
-                                                    <i className="text-sm p-1  fi fi-bs-indian-rupee-sign"></i>
-                                                    <span className=" pr-1">{item.Amount}</span>
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                );
-                            })
-                        )}
+                                </div>
+                            );
+                        })}
 
                     </div>
                 </div>
