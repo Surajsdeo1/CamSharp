@@ -7,6 +7,7 @@ import AcceriossData from '../Alldata/AccessoriesData';
 import BookingForm from '../Components/Core/BookingForm'; // Fix typo in component import
 import FooterBar from '../Components/Common/FooterBar';
 
+
 const ItemsDetails = () => {
     const { itemId, type } = useParams();
     const itemIdNumber = parseInt(itemId);

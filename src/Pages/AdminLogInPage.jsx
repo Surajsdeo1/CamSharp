@@ -1,5 +1,6 @@
 import React, {useState,useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
+import Config from '../utils/Config';
 
 
 
@@ -49,7 +50,7 @@ function LoginPage() {
   
       try {
         console.log('login form value', formValues);
-        const response = await fetch('http://localhost:5000/api/users/admin-login', {
+        const response = await fetch(`${Config.BASE_URL}/api/users/admin-login`, {
                   method: 'POST',
                   headers: {
                       'Content-Type': 'application/json',

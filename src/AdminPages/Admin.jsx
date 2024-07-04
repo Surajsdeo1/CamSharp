@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProfileImg from '../Images/boy.webp';
 import './Admin.css';  // Import the CSS file
 import AdminNavbar from '../Components/Common/AdminNavbar';
+import Config from '../utils/Config';
 
 
 const AdminPage = () => {
@@ -12,7 +13,7 @@ const AdminPage = () => {
     useEffect(() => {
         const fetchRecentBooking = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/admin');
+                const response = await fetch(`${Config.BASE_URL}/api/admin`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch recent booking');
                 }

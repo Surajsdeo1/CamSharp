@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProfileImg from '../Images/boy.webp';
 import AdminNavbar from '../Components/Common/AdminNavbar';
-
+import Config from '../utils/Config';
 const UserBookingDetails = () => {
     const { productId } = useParams();
     const [bookingDetails, setBookingDetails] = useState();
@@ -59,7 +59,7 @@ const UserBookingDetails = () => {
     useEffect(() => {
         const fetchBookingDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/user-booking-details/${productId}`);
+                const response = await fetch(`${Config.BASE_URL}/api/user-booking-details/${productId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch booking details');
                 }
@@ -79,7 +79,7 @@ const UserBookingDetails = () => {
     const onsubmitPayButton = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/process-payment', {
+            const response = await fetch(`${Config.BASE_URL}/api/process-payment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ const UserBookingDetails = () => {
     const onBookingButtonSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/boooking-otp-validation', {
+            const response = await fetch(`${Config.BASE_URL}/api/boooking-otp-validation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ const UserBookingDetails = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5000/api/return-process-payment', {
+            const response = await fetch(`${Config.BASE_URL}/api/return-process-payment`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -181,7 +181,7 @@ const UserBookingDetails = () => {
     const onReturnButtonSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/return-otp-validation', {
+            const response = await fetch(`${Config.BASE_URL}/api/return-otp-validation`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

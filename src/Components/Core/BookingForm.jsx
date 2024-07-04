@@ -2,6 +2,7 @@ import React, {  useState } from 'react';
 
 
 import { useParams,Link } from 'react-router-dom';
+import Config from '../../utils/Config';
 
 
 // Custom alert component
@@ -54,7 +55,7 @@ const BookingForm = () => {
         try {
 
 
-            const response = await fetch('http://localhost:5000/api/booking', {
+            const response = await fetch(`h${Config.BASE_URL}/api/booking`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

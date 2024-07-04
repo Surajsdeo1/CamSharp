@@ -3,6 +3,7 @@ import Navbar from '../Components/Common/Navbar';
 import FooterBar from '../Components/Common/FooterBar';
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '../Images/boy.webp';
+import Config from '../utils/Config';
 
 function BookingDetails() {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ function BookingDetails() {
             }
 
             try {
-                const response = await fetch('http://localhost:5000/api/users/user-booking', {
+                const response = await fetch(`${Config.BASE_URL}/api/users/user-booking`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

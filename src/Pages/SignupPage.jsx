@@ -61,7 +61,7 @@ function Signup() {
 
         try {
             console.log('form value', formValues);
-            const response = await fetch('http://localhost:5000/api/users/signup', {
+            const response = await fetch(`${Config.BASE_URL}/api/users/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

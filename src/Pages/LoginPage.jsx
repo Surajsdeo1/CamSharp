@@ -1,5 +1,7 @@
 // src/pages/LoginPage.js
 import React, { useEffect, useState } from 'react';
+import Config from '../utils/Config';
+
 import Navbar from '../Components/Common/Navbar';
 import Footer from '../Components/Common/Footer';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
@@ -53,7 +55,7 @@ function LoginPage() {
 
     try {
       console.log('login form value', formValues);
-      const response = await fetch('http://localhost:5000/api/users/login', {
+      const response = await fetch(`${Config.BASE_URL}/api/users/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

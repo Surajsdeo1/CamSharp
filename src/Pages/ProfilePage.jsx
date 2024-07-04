@@ -3,6 +3,7 @@ import Navbar from '../Components/Common/Navbar';
 import FooterBar from '../Components/Common/FooterBar';
 import profileImages from '../Images/boy.webp';
 import { useNavigate } from 'react-router-dom';
+import Config from '../utils/Config';
 
 function ProfileSection() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function ProfileSection() {
           return;
         }
         // Make a GET request to fetch user profile data
-        const response = await fetch('http://localhost:5000/api/users/profile', {
+        const response = await fetch(`${Config.BASE_URL}/api/users/profile`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`
