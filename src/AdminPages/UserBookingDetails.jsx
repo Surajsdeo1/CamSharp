@@ -312,7 +312,7 @@ const UserBookingDetails = () => {
                         </div>
                     </div>
 
-                    <div className="container mx-auto mt-8 p-4 bg-sky-300 rounded-lg text-black shadow-md">
+                    <div className="container mx-auto mt-8 mb-8 p-4 bg-sky-300 rounded-lg text-black shadow-md">
     <h1 className="text-2xl font-bold mb-4">User Booking Details :</h1>
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 border-4 border-gray-300">
         <div className="flex items-center">
