@@ -312,42 +312,41 @@ const UserBookingDetails = () => {
                         </div>
                     </div>
 
-                    
-                    <div class="container mx-auto mt-8 mb-14 p-6 bg-sky-300 rounded-lg text-black shadow-lg max-w-xl">
-    <h1 class="text-3xl font-bold mb-6 text-center">User Booking Details</h1>
-    <div class="grid grid-cols-1 gap-6 p-4 bg-white rounded-lg shadow-xl shadow-red-600">
-      
-        <div class="flex items-center justify-between  shadow-inner">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Product ID:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.productId}</span>
+
+                    <div className="container mx-auto mt-4 mb-14 p-6 bg-sky-300 rounded-lg text-black shadow-lg max-w-xl">
+    <h1 className="text-3xl font-bold mb-6 text-center">User Booking Details</h1>
+    <div className="grid grid-cols-1 gap-6 p-4 bg-white rounded-lg shadow-xl shadow-red-600">
+        <div className="flex items-center justify-between shadow-inner">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Product ID:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.productId}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Quantity:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.quantity}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Quantity:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.quantity}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Date:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{formatDate(booking.date)}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Date:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{formatDate(booking.date)}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Time:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.time}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Time:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.time}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Duration:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.duration}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Duration:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.duration}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Location:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.location}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Location:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.location}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Name:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.name}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Name:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.name}</span>
         </div>
-        <div class="flex items-center shadow-inner justify-between">
-            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">WhatsApp No:</strong>
-            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.mobilenumber}</span>
+        <div className="flex items-center shadow-inner justify-between">
+            <strong className="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">WhatsApp No:</strong>
+            <span className="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.mobilenumber}</span>
         </div>
     </div>
 </div>
