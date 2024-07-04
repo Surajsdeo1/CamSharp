@@ -312,43 +312,46 @@ const UserBookingDetails = () => {
                         </div>
                     </div>
 
-                    <div className="container mx-auto mt-8 mb-14 p-4 bg-sky-300 rounded-lg text-black shadow-md">
-    <h1 className="text-2xl font-bold mb-4">User Booking Details :</h1>
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 border-4 border-gray-300">
-        <div className="flex items-center">
-            <strong className="w-1/3">Product ID:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.productId}</span>
+                    
+                    <div class="container mx-auto mt-8 mb-14 p-6 bg-sky-300 rounded-lg text-black shadow-lg max-w-xl">
+    <h1 class="text-3xl font-bold mb-6 text-center">User Booking Details</h1>
+    <div class="grid grid-cols-1 gap-6 p-4 bg-white rounded-lg shadow-xl shadow-red-600">
+      
+        <div class="flex items-center justify-between  shadow-inner">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Product ID:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.productId}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Quantity:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.quantity}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Quantity:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.quantity}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Date:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{formatDate(booking.date)}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Date:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{formatDate(booking.date)}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Time:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.time}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Time:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.time}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Duration:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.duration}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Duration:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.duration}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Location:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.location}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Location:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.location}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">Name:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.name}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">Name:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.name}</span>
         </div>
-        <div className="flex items-center">
-            <strong className="w-1/3">WhatsApp No:</strong>
-            <span className="text-white w-2/3 pl-4 font-bold">{booking.mobilenumber}</span>
+        <div class="flex items-center shadow-inner justify-between">
+            <strong class="text-gray-700 rounded-xl border p-2 shadow-inner shadow-red-600">WhatsApp No:</strong>
+            <span class="text-emerald-600 font-semibold rounded-xl border p-2 shadow-inner shadow-red-600">{booking.mobilenumber}</span>
         </div>
     </div>
 </div>
+
 
 
                 </div>
