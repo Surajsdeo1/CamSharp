@@ -4,6 +4,7 @@ import React, { useState,useEffect } from 'react';
 import Navbar from "../Components/Common/Navbar";
 import Footer from "../Components/Common/Footer";
 import { useLocation,  useNavigate } from 'react-router-dom';
+import Config from '../utils/Config';
 
 function Signup() {
     const navigate = useNavigate();
