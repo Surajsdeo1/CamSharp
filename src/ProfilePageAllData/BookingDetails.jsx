@@ -35,6 +35,7 @@ function BookingDetails() {
 
                 const data = await response.json();
                 setUserData(data);
+               
                 setLoading(false);
 
                 if (data.length > 0) {

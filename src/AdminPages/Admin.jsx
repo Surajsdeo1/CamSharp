@@ -55,6 +55,21 @@ const AdminPage = () => {
         return name.split(' ')[0].toUpperCase();
     };
 
+    const DeleteBooked = async (productId) => {
+        try {
+            const response = await fetch(`${Config.BASE_URL}/api/delete/${productId}`, {
+                method: 'PUT',
+            });
+            if (!response.ok) {
+                throw new Error('Failed to delete booking');
+            }
+            // Update the state to reflect the deletion
+            
+        } catch (error) {
+            console.error('Error deleting booking:', error);
+        }
+    };
+
     return (
         <div className="bg-black  min-h-screen">
             {/* Admin Details */}
@@ -78,12 +93,14 @@ const AdminPage = () => {
 
             {/* User Info */}
             {sortedRecentBooking.map((booking, index) => (
-                <Link to={`/user-booking-details/${booking.productId}`} key={index}>
+                
                     <div className="Booking-Card bg-gray-400 rounded-lg mt-3 mb-2">
-                        <div className='flex justify-start w-full border-b border-black font-bold h-6 pl-3'>
-                            <h4 className='mb-2 text-black font-bold'><span>{new Date(booking.createdAt).toLocaleDateString('en-GB')},</span></h4>
-                            <h4 className='mr-8 text-black font-bold'><span>{booking.createdTime}</span></h4>
+                        <div className='flex justify-between w-full border-b border-black font-bold h-6 pl-3'>
+                           <div className='flex justify-start gap-2'> <h4 className='mb-2 text-black font-bold'><span>{new Date(booking.createdAt).toLocaleDateString('en-GB')},</span></h4>
+                           <h4 className='mr-3 text-black font-bold'><span>{booking.createdTime}</span></h4></div>
+                         {booking.isReturn ? ( <div className='text-xl text-red mr-4' onClick={() => DeleteBooked(booking.productId)}> <i className='fi fi-bs-cross-circle mb-2  '></i></div>): ''}
                         </div>
+                        <Link to={`/user-booking-details/${booking.productId}`} key={index}>
                         <div className='flex gap-4 rounded-lg mx-auto mb-2 pl-4 pr-4 pb-4 md:p-8 max-w-xl'>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center">
@@ -111,8 +128,9 @@ const AdminPage = () => {
                                 </div>
                             </div>
                         </div>
+                        </Link>
                     </div>
-                </Link>
+                
             ))}
             <AdminNavbar/>
         </div>
