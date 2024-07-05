@@ -66,7 +66,7 @@ function ItemsPage() {
                     <div className="flex flex-wrap justify-center h-screen ">
 
                         {filteredProducts.map((item, index) => {
-                            const isHidden = products.some(product => product.productId === item.id);
+                            const isHidden = products.some(product => product.isBook === true);
 
                             return (
                                 <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${isHidden ? 'hidden' : ''}`}>
