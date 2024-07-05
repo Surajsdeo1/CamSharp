@@ -5,14 +5,13 @@ import CamData from "../Alldata/CamData";
 import LensData from "../Alldata/LensData";
 import AccessData from "../Alldata/AccessoriesData";
 import FooterBar from '../Components/Common/FooterBar';
-import Config from "../utils/Config";// Ensure Config is correctly imported
+import Config from "../utils/Config";
 
 function ItemsPage() {
-    let { type } = useParams(); // Reading URL parameter
+    let { type } = useParams();
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
 
-    // Define the color scheme
     const primaryText = "text-gray-700";
     const secondaryText = "text-gray-500";
     const primaryBg = "bg-white";
@@ -20,7 +19,6 @@ function ItemsPage() {
     useEffect(() => {
         const fetchProductData = async () => {
             try {
-                // Make a GET request to fetch product data
                 const response = await fetch(`${Config.BASE_URL}/api/products`, {
                     method: 'GET',
                 });
@@ -29,11 +27,9 @@ function ItemsPage() {
                     throw new Error('Failed to fetch product data');
                 }
 
-                // Extract product data from response
                 const data = await response.json();
-                setProducts(data); // Set the fetched data to state
+                setProducts(data);
 
-                // Filter products based on type (camera, lens, accessories) if needed
                 if (type === "camera") {
                     setFilteredProducts(CamData);
                 } else if (type === "lens") {
@@ -58,15 +54,11 @@ function ItemsPage() {
 
                 <div id="item-list" className={`${primaryBg} text-gray-700 mt-12 sm:px-8 pt-1`}>
                     <div className="text-black text-center">
-                     
-                        <span>
-                            <h1 className="text-xl font-extrabold text-blue-600 border-b pb-1">{type}</h1>
-                        </span>
+                        <h1 className="text-xl font-extrabold text-blue-600 border-b pb-1">{type}</h1>
                     </div>
-                    <div className="flex flex-wrap justify-center h-screen ">
-
+                    <div className="flex flex-wrap justify-center h-screen">
                         {filteredProducts.map((item, index) => {
-                            const isHidden = products.some(product => product.isBook === true);
+                            const isHidden = products.some(productSelected => parseInt(productSelected.productId) === item.id);
 
                             return (
                                 <div key={index} className={`mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer ${isHidden ? 'hidden' : ''}`}>
@@ -80,8 +72,8 @@ function ItemsPage() {
                                             amount: item.Amount,
                                             imgSrc: item.ImgSrc
                                         }
-                                    }}>
-                                        <div className="item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 border-gray-600">
+                                    }} className="block">
+                                        <div className={`item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2 ${isHidden ? 'border-red-500' : 'border-gray-600'}`}>
                                             <div className="item-image ml-12 overflow-hidden rounded-lg border">
                                                 <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" />
                                             </div>
@@ -95,12 +87,12 @@ function ItemsPage() {
                                                     <span className=" pr-1">{item.Amount}</span>
                                                 </h4>
                                             </div>
+                                           
                                         </div>
                                     </Link>
                                 </div>
                             );
                         })}
-
                     </div>
                 </div>
             </div>
