@@ -113,7 +113,7 @@ const AdminPage = () => {
             {/* User Info */}
             {sortedRecentBooking.map((booking, index) => (
 
-                <div key={index} className="Booking-Card bg-sky-400 shadow-lg shadow-sky-400 w-80 h-auto rounded-md mt-4 mb-6 ml-16">
+                <div key={index} className="Booking-Card bg-sky-400 shadow-lg shadow-sky-400 w-80 h-auto rounded-md mt-4 mb-6 ml-12">
                     <div className='flex justify-between rounded-t-lg w-full bg-sky-400 border-b border-blue-500 font-bold h-6 pl-3'>
                         <div className='flex justify-start gap-2'> <h4 className='mb-2 text-black font-bold'><span>{new Date(booking.createdAt).toLocaleDateString('en-GB')},</span></h4>
                             <h4 className='mr-3 text-black font-bold'><span>{booking.createdTime}</span></h4></div>
