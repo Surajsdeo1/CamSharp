@@ -259,9 +259,9 @@ const UserBookingDetails = () => {
                     {/*  details of ADMIN */}
                     <div className="flex items-center justify-center h-auto">
                         {/* Admin Details Section */}
-                        <div className="relative w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl p-6  rounded-lg  transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl">
+                        <div className="relative w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl p-6  rounded-lg  ">
                             {/* Gradient Overlay */}
-                            <div className="absolute top-0 left-0 w-full h-full  opacity-50 rounded-lg transform -rotate-6"></div>
+                          
 
                             <div className="relative z-10">
                                 <div className="text-center mb-4">
@@ -269,7 +269,7 @@ const UserBookingDetails = () => {
                                 </div>
                                 {/* Admin Profile Section */}
                                 <div className="flex items-center justify-center mb-6">
-                                    <div className="bg-sky-400 p-8 max-w-lg w-full rounded-lg shadow-inner shadow-blue-500 transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl ">
+                                    <div className="bg-sky-400 p-8 max-w-lg w-full rounded-lg shadow-inner shadow-blue-500  ">
                                         <div className="flex flex-col items-center justify-center mb-6">
                                             <h1 className="text-white text-2xl font-bold">CamSharp</h1>
                                             <p className="text-yellow-600 text-sm mt-2">Your premier destination for photography</p>
@@ -300,7 +300,7 @@ const UserBookingDetails = () => {
                             {/*  3d user information section start */}
 
                             <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg ">
-                                <div className="relative w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2 pl-2 pr-2 transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl">
+                                <div className="relative w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2 pl-2 pr-2 ">
                                     {/* Gradient Overlay */}
                                     <div className="text-center mb-2 ">
                                         <h1 className="text-3xl font-bold text-gray-900">User Information...</h1>
@@ -347,7 +347,7 @@ const UserBookingDetails = () => {
                     {/*  booking details */}
 
                     <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-80 ml-6">
-                        <div className="relative  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl">
+                        <div className="relative  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  ">
                             {/* Gradient Overlay */}
                             <div className="text-center mb-2 ">
                                 <h1 className="text-3xl font-bold text-gray-900">Booking Details...</h1>
