@@ -89,10 +89,10 @@ const AdminPage = () => {
                         <div className="text-center mb-6 pt-2">
 
 
-                            <div className="Container bg-slate-200 shadow-lg shadow-black rounded-full w-40 h-40 ml-8">
+                            <div className="Container bg-slate-200 shadow-lg shadow-black rounded-full w-40 h-40 ml-12">
 
                             </div>
-                            <div className="Profile-Div absolute top-36 mt-2   left-20 ml-1  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
+                            <div className="Profile-Div absolute top-36 mt-2   left-20 ml-3  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
                                 <img src={ProfileImg} alt="Profile" className="Image-Boy w-full h-full object-cover border-b-2 border-l-2 border-r-2 shadow-inner shadow-white" />
                             </div>
 
