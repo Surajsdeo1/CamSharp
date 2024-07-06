@@ -281,7 +281,7 @@ const UserBookingDetails = () => {
                                             <div className="Container bg-slate-200 shadow-lg shadow-black rounded-full w-40 h-40 ml-20">
 
                                             </div>
-                                            <div className="Profile-Div absolute top-40 mt-2   left-20 ml-10  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
+                                            <div className="Profile-Div absolute top-40 mt-2   left-24 ml-10  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
                                                 <img src={ProfileImg} alt="Profile" className="Image-Boy w-full h-full object-cover border-b-2 border-l-2 border-r-2 shadow-inner shadow-white" />
                                             </div>
 
@@ -310,23 +310,23 @@ const UserBookingDetails = () => {
 
                                         <div className="space-y-2  pt-4 pb-4  ">
 
-                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-5  border shadow-lg">
+                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-8  border shadow-lg">
                                                 <span className="font-bold text-gray-900">Name:</span>
                                                 <span className="text-gray-700 font-extrabold">{booking.user.name}</span>
                                             </div>
-                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-5 border shadow-lg">
+                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-8 border shadow-lg">
                                                 <span className="font-bold text-gray-900">Mobile Number:</span>
                                                 <span className="text-gray-700 font-extrabold">{booking.user.mobileNumber}</span>
                                             </div>
-                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-5  border shadow-lg">
+                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-8  border shadow-lg">
                                                 <span className="font-bold text-gray-900">Email:</span>
                                                 <span className="text-gray-700 font-extrabold">{booking.user.email}</span>
                                             </div>
-                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-5  border shadow-lg">
+                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-8  border shadow-lg">
                                                 <span className="font-bold text-gray-900">Login Count:</span>
                                                 <span className="text-gray-700 font-extrabold">{booking.user.LoginCount}</span>
                                             </div>
-                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-5  border shadow-lg">
+                                            <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-8  border shadow-lg">
                                                 <span className="font-bold text-gray-900">Created At:</span>
                                                 <span className="text-gray-700 font-extrabold">{new Date(booking.user.createdAt).toLocaleDateString()}</span>
                                             </div>
