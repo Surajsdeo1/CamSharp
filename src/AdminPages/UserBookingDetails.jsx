@@ -281,7 +281,7 @@ const UserBookingDetails = () => {
                                             <div className="Container bg-slate-200 shadow-lg shadow-black rounded-full w-40 h-40 ml-20">
 
                                             </div>
-                                            <div className="Profile-Div absolute top-40 mt-2   left-24 ml-10  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
+                                            <div className="Profile-Div absolute top-60 mt-2   left-24 ml-10  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
                                                 <img src={ProfileImg} alt="Profile" className="Image-Boy w-full h-full object-cover border-b-2 border-l-2 border-r-2 shadow-inner shadow-white" />
                                             </div>
 
@@ -306,7 +306,7 @@ const UserBookingDetails = () => {
                                         <h1 className="text-3xl font-bold text-gray-900">User Information...</h1>
                                     </div>
 
-                                    <div className="relative z-10 bg-white h-auto rounded-lg shadow-inner shadow-blue-500">
+                                    <div className=" z-10 bg-white h-auto rounded-lg shadow-inner shadow-blue-500">
 
                                         <div className="space-y-2  pt-4 pb-4  ">
 
@@ -353,7 +353,7 @@ const UserBookingDetails = () => {
                                 <h1 className="text-3xl font-bold text-gray-900">Booking Details...</h1>
                             </div>
 
-                            <div className="relative z-10 bg-white h-auto rounded-lg shadow-inner shadow-blue-500 pb-4">
+                            <div className=" z-10 bg-white h-auto rounded-lg shadow-inner shadow-blue-500 pb-4">
 
                                 <div className="space-y-2  pt-4  pl-1 ">
 
@@ -417,7 +417,7 @@ const UserBookingDetails = () => {
                         )}
 
                         {selectedPaymentMode && !booking.isBook && payFormVisible && (
-                            <div className='bg-sky-400 w-80 h-auto ml-6 pt-2 pl-2 pr-2  rounded-lg text-center mt-4'>
+                            <div className='bg-sky-400 w-80 h-auto ml-14 pt-2 pl-2 pr-2  rounded-lg text-center mt-4'>
                                 <h1 className='text-black font-bold text-2xl'>First Payment...</h1>
                                 <form className='rounded-lg bg-white flex flex-col gap-2 mt-2 w-full h-auto pt-4 text-black pb-2 ' action="" onSubmit={onsubmitPayButton}>
 
@@ -431,7 +431,7 @@ const UserBookingDetails = () => {
                         )}
 
                         {selectedPaymentMode && !booking.isReturn && booking.isBook && RPayBuuttonVisibble && (
-                            <div className='bg-sky-400 w-80 h-auto ml-6 pt-2 pl-2 pr-2  rounded-lg text-center mt-4'>
+                            <div className='bg-sky-400 w-80 h-auto ml-14 pt-2 pl-2 pr-2  rounded-lg text-center mt-4'>
                                 <h1 className='text-black font-bold text-2xl'>Remaining Payment...</h1>
                                 <form className='rounded-lg bg-white flex flex-col gap-2 mt-2  w-full h-auto pt-4 text-black font-bold pb-2' action="" onSubmit={onsubmitRpayButton}>
                                     Remaining Payment:<input className='h-8 w-44 p-1 ml-16  rounded-lg border-b-4 text-black font-bold placeholder-sky-300 bg-transparent focus:outline-none focus:border-transparent shadow-inner  shadow-blue-500' type="text" name="Remaning_Amount" placeholder='Remaining-Amount' required value={RemaingAmount.Remaning_Amount} onChange={OnChangeRPayInput} />
