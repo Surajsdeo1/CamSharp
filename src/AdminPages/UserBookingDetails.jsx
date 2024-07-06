@@ -4,7 +4,7 @@ import ProfileImg from '../Images/boy.webp';
 import AdminNavbar from '../Components/Common/AdminNavbar';
 import Config from '../utils/Config';
 const UserBookingDetails = () => {
-    const { productId } = useParams();
+    const { _id, productId } = useParams();
     const [bookingDetails, setBookingDetails] = useState();
 
     const [selectedPaymentMode, setSelectedPaymentMode] = useState('');
@@ -59,7 +59,7 @@ const UserBookingDetails = () => {
     useEffect(() => {
         const fetchBookingDetails = async () => {
             try {
-                const response = await fetch(`${Config.BASE_URL}/api/user-booking-details/${productId}`);
+                const response = await fetch(`${Config.BASE_URL}/api/user-booking-details/${_id}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch booking details');
                 }
@@ -72,7 +72,7 @@ const UserBookingDetails = () => {
         };
 
         fetchBookingDetails();
-    }, [productId]);
+    }, [_id]);
 
 
 
@@ -86,6 +86,8 @@ const UserBookingDetails = () => {
                 },
                 body: JSON.stringify({
                     productId: productId,
+                    _id,
+
 
 
                 })
@@ -116,6 +118,7 @@ const UserBookingDetails = () => {
                 body: JSON.stringify({
                     BookingOTP: OTPValue.OTP,
                     productId: productId,
+                    _id,
                     totalAmount: AmountValue.Total_Amount,
                     advanceAmount: AmountValue.Advance_Amount,
                     mode: selectedPaymentMode,
@@ -145,6 +148,7 @@ const UserBookingDetails = () => {
 
         } catch (error) {
             console.log('payment error:', error);
+            console.log(productId);
         }
 
     };
@@ -159,7 +163,8 @@ const UserBookingDetails = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    productId: productId,
+                    
+                    _id,
 
                 })
             });
@@ -189,6 +194,7 @@ const UserBookingDetails = () => {
                 body: JSON.stringify({
                     returnOTP: OTPValue.OTP,
                     productId: productId,
+                    _id,
                     remaingAmount: RemaingAmount.Remaning_Amount,
                     mode: selectedPaymentMode, // Assuming you want to send the payment amount as well
                 })
@@ -240,12 +246,14 @@ const UserBookingDetails = () => {
         return `${year}-${month}-${day}`;
     };
 
+    const bookings=Array.isArray(bookingDetails)? bookingDetails:[bookingDetails];
+
     return (
         <>
 
 
             {/*  yaha pe use krna  */}
-            {bookingDetails.map((booking, index) => (
+            {bookings.map((booking, index) => (
                 <div key={index} className='bg-sky-300'>
                     <div className="flex items-center justify-center w-full ">
                         <div className="bg-sky-300 p-8 max-w-lg w-full">
