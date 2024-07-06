@@ -300,7 +300,7 @@ const UserBookingDetails = () => {
                             {/*  3d user information section start */}
 
                             <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg ">
-                                <div className="relative w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2 pl-2 pr-2 ">
+                                <div className=" w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2 pl-2 pr-2 ">
                                     {/* Gradient Overlay */}
                                     <div className="text-center mb-2 ">
                                         <h1 className="text-3xl font-bold text-gray-900">User Information...</h1>
@@ -347,7 +347,7 @@ const UserBookingDetails = () => {
                     {/*  booking details */}
 
                     <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-80 ml-14">
-                        <div className="relative  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  ">
+                        <div className="  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  ">
                             {/* Gradient Overlay */}
                             <div className="text-center mb-2 ">
                                 <h1 className="text-3xl font-bold text-gray-900">Booking Details...</h1>
