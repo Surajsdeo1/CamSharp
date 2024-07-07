@@ -50,6 +50,7 @@ function UserPaymentDetails() {
      
 
       const bookings=Array.isArray(paymentData)?paymentData:[paymentData];
+      const sortedBookings = [...bookings].sort((a, b) => a.productId.localeCompare(b.productId));
     
     return (
         <>
@@ -92,7 +93,7 @@ function UserPaymentDetails() {
                     <h2 className="text-2xl font-bold">Payment History...</h2>
                 </div>
                 {bookings.map((booking, index) => (
-                <div key={index} className="max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
+                <div key={index} className="Payment-List max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
                     <div className=" PaymentId-UserDetails text-white text-center py-4 hover:cursor-pointer" onClick={toggleDetails}>
                         
                         <h2 className="text-xl font-bold">{booking.name} : <span className='ml-4'>{booking.productId}</span></h2>
