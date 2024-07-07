@@ -92,7 +92,7 @@ function UserPaymentDetails() {
                 <div className=" text-white bg-sky-400 shadow-lg  text-center py-4">
                     <h2 className="text-2xl font-bold">Payment History...</h2>
                 </div>
-                {bookings.map((booking, index) => (
+                {sortedBookings.map((booking, index) => (
                 <div key={index} className="Payment-List max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
                     <div className=" PaymentId-UserDetails text-white text-center py-4 hover:cursor-pointer" onClick={toggleDetails}>
                         
