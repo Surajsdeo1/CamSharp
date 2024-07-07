@@ -4,6 +4,7 @@ import ProfileImg from '../Images/boy.webp';
 import './Admin.css';  // Import the CSS file
 import Config from '../utils/Config';
 import { Link } from 'react-router-dom';
+import AdminNavbar from '../Components/Common/AdminNavbar';
 
 
 
@@ -50,7 +51,7 @@ function UserPaymentDetails() {
     
     return (
         <>
-            <div className="bg-sky-300  w-full min-h-screen pb-12">
+            <div className="bg-sky-300  w-full min-h-screen pb-20">
                 <div className="relative z-10">
                     <div className="text-center mb-4 pt-4">
                         <h1 className="text-3xl font-bold text-gray-900 ">Admin</h1>
@@ -143,7 +144,7 @@ function UserPaymentDetails() {
                         </div>
                 </div>
                 ))}
-
+<AdminNavbar/>
             </div>
         </>
     )
