@@ -49,45 +49,32 @@ function UserPaymentDetails() {
 
 
     //    In sorted way m data ko show krwayega  
-    useEffect(() => {
-        // Function to filter and sort data based on selectedDate
-        const filterAndSortData = () => {
-            // Check if selectedDate is valid and paymentData has items
-            if (selectedDate && paymentData.length > 0) {
-                const filteredData = paymentData.filter(item => {
-                    // Convert item.createdAt to Date object for comparison
-                    const itemDate = new Date(item.createdAt);
-                    // Compare only date parts (ignoring time) for equality
-                    return itemDate.toISOString().split('T')[0] === selectedDate.toISOString().split('T')[0];
-                });
-                // Sort filteredData by createdAt (assuming it's a date string)
-                filteredData.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-                setPaymentData(filteredData);
-            } else {
-                // If no date selected or paymentData is empty, show all data sorted by createdAt
-                const sortedData = [...paymentData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
-                setPaymentData(sortedData);
-            }
-        };
-
-        filterAndSortData();
-    }, [selectedDate, paymentData]); // Trigger when selectedDate or paymentData changes
-
     const handleDateChange = (event) => {
         const selectedDate = event.target.value ? new Date(event.target.value) : null;
         setSelectedDate(selectedDate);
     };
 
     const handleSortButtonClick = () => {
-        // Trigger filtering and sorting when the Sort button is clicked
-        filterAndSortData();
+        // Check if selectedDate is valid and paymentData has items
+        if (selectedDate && paymentData.length > 0) {
+            const filteredData = paymentData.filter(item => {
+                // Convert item.createdAt to Date object for comparison
+                const itemDate = new Date(item.createdAt);
+                // Compare only date parts (ignoring time) for equality
+                return itemDate.toISOString().split('T')[0] === selectedDate.toISOString().split('T')[0];
+            });
+            // Sort filteredData by createdAt (assuming it's a date string)
+            filteredData.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            setPaymentData(filteredData);
+        } else {
+            // If no date selected or paymentData is empty, show all data sorted by createdAt
+            const sortedData = [...paymentData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+            setPaymentData(sortedData);
+        }
     };
 
-
-    //end 
-    
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error: {error}</p>;
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error: {error}</p>;
      
 
      
