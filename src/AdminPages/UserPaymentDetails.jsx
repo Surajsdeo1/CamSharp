@@ -95,7 +95,7 @@ function UserPaymentDetails() {
                         
                         <h2 className="text-xl font-bold">{booking.name} : <span className='ml-4'>{booking.productId}</span></h2>
                     </div>
-                    <div ref={detailsRef}  className={`Details-Section pl-4 pr-4 pt-2  pb-1 bg-slate-200 w-72 ml-4 shadow-inner shadow-blue-500 transition-max-height duration-500 ease-in-out ${showDetails ? 'max-h-screen' : 'max-h-0 overflow-hidden'}`}>
+                    <div ref={detailsRef}  className={`Details-Section pl-4 pr-4 pt-2  pb-1 bg-white w-72 ml-4 shadow-inner shadow-blue-500 transition-max-height duration-500 ease-in-out ${showDetails ? 'max-h-screen' : 'max-h-0 overflow-hidden'}`}>
 
                        
                         <div className="flex items-center justify-between mb-2  shadow-lg border rounded-lg p-1 mt-4">
