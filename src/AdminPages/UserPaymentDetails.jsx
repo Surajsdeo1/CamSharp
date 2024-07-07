@@ -52,17 +52,19 @@ function UserPaymentDetails() {
     useEffect(() => {
         // Function to filter and sort data based on selectedDate
         const filterAndSortData = () => {
-            if (selectedDate) {
+            // Check if selectedDate is valid and paymentData has items
+            if (selectedDate && paymentData.length > 0) {
                 const filteredData = paymentData.filter(item => {
-                    const itemDate = new Date(item.createdAt).toLocaleDateString(); // Adjust as per your date format
-                    const selectedDateFormatted = selectedDate.toLocaleDateString(); // Adjust as per your date format
-                    return itemDate === selectedDateFormatted;
+                    // Convert item.createdAt to Date object for comparison
+                    const itemDate = new Date(item.createdAt);
+                    // Compare only date parts (ignoring time) for equality
+                    return itemDate.toISOString().split('T')[0] === selectedDate.toISOString().split('T')[0];
                 });
                 // Sort filteredData by createdAt (assuming it's a date string)
                 filteredData.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
                 setPaymentData(filteredData);
             } else {
-                // If no date selected, show all data sorted by createdAt
+                // If no date selected or paymentData is empty, show all data sorted by createdAt
                 const sortedData = [...paymentData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
                 setPaymentData(sortedData);
             }
@@ -72,10 +74,14 @@ function UserPaymentDetails() {
     }, [selectedDate, paymentData]); // Trigger when selectedDate or paymentData changes
 
     const handleDateChange = (event) => {
-        const selectedDate = new Date(event.target.value);
+        const selectedDate = event.target.value ? new Date(event.target.value) : null;
         setSelectedDate(selectedDate);
     };
 
+    const handleSortButtonClick = () => {
+        // Trigger filtering and sorting when the Sort button is clicked
+        filterAndSortData();
+    };
 
 
     //end 
@@ -125,7 +131,8 @@ function UserPaymentDetails() {
                 {/* Payment details for admin */}
                 <div className=" text-white bg-sky-400 shadow-lg  flex justify-center gap-12 py-4">
                     <h2 className="text-2xl font-bold">Payment History...</h2>
-                    <input type="date" className='bg-sky-400  rounded-lg p-2' onChange={handleDateChange} />
+                    <input type="date" className='bg-sky-400 rounded-lg p-2' onChange={handleDateChange} />
+                    <button className="bg-sky-400 rounded-lg p-2" onClick={handleSortButtonClick}>Sort</button>
                 </div>
                 {paymentData.map((booking, index) => (
                 <div key={index} className="Payment-List max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
