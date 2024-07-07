@@ -125,7 +125,7 @@ function UserPaymentDetails() {
                 {/* Payment details for admin */}
                 <div className=" text-white bg-sky-400 shadow-lg  flex justify-center gap-12 py-4">
                     <h2 className="text-2xl font-bold">Payment History...</h2>
-                    <input type="date" onChange={handleDateChange} />
+                    <input type="date" className='bg-sky-400  rounded-lg p-2' onChange={handleDateChange} />
                 </div>
                 {paymentData.map((booking, index) => (
                 <div key={index} className="Payment-List max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
