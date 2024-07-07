@@ -35,10 +35,11 @@ function UserPaymentDetails() {
             const data = await response.json();
             setPaymentData(data);
           } catch (error) {
-            setError(error.message);
-          } finally {
             setLoading(false);
-          }
+           
+          } 
+           
+          
         };
     
         fetchData();
