@@ -146,7 +146,7 @@ function AllDetailsOfUser() {
                     </div>
                     {/*  booking details */}
 
-                    <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-72 ml-20">
+                    <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-72 ml-16">
                         <div className="  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  ">
                             {/* Gradient Overlay */}
                             <div className="text-center mb-2 ">
