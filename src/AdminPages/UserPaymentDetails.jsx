@@ -14,6 +14,7 @@ function UserPaymentDetails() {
     const [paymentData, setPaymentData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(null);
    
     const detailsRef = useRef(null);
 
@@ -44,13 +45,46 @@ function UserPaymentDetails() {
     
         fetchData();
       }, []);
+
+
+
+    //    In sorted way m data ko show krwayega  
+    useEffect(() => {
+        // Function to filter and sort data based on selectedDate
+        const filterAndSortData = () => {
+            if (selectedDate) {
+                const filteredData = paymentData.filter(item => {
+                    const itemDate = new Date(item.createdAt).toLocaleDateString(); // Adjust as per your date format
+                    const selectedDateFormatted = selectedDate.toLocaleDateString(); // Adjust as per your date format
+                    return itemDate === selectedDateFormatted;
+                });
+                // Sort filteredData by createdAt (assuming it's a date string)
+                filteredData.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                setPaymentData(filteredData);
+            } else {
+                // If no date selected, show all data sorted by createdAt
+                const sortedData = [...paymentData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                setPaymentData(sortedData);
+            }
+        };
+
+        filterAndSortData();
+    }, [selectedDate, paymentData]); // Trigger when selectedDate or paymentData changes
+
+    const handleDateChange = (event) => {
+        const selectedDate = new Date(event.target.value);
+        setSelectedDate(selectedDate);
+    };
+
+
+
+    //end 
     
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error}</p>;
      
 
-      const bookings=Array.isArray(paymentData)?paymentData:[paymentData];
-      const sortedBookings = [...bookings].sort((a, b) => a.productId.localeCompare(b.productId));
+     
     
     return (
         <>
@@ -89,10 +123,11 @@ function UserPaymentDetails() {
                 </div>
 
                 {/* Payment details for admin */}
-                <div className=" text-white bg-sky-400 shadow-lg  text-center py-4">
+                <div className=" text-white bg-sky-400 shadow-lg  flex justify-center gap-12 py-4">
                     <h2 className="text-2xl font-bold">Payment History...</h2>
+                    <input type="date" onChange={handleDateChange} />
                 </div>
-                {sortedBookings.map((booking, index) => (
+                {paymentData.map((booking, index) => (
                 <div key={index} className="Payment-List max-w-md mx-auto bg-sky-400 w-80 shadow-lg rounded-lg overflow-hidden mt-5">
                     <div className=" PaymentId-UserDetails text-white text-center py-4 hover:cursor-pointer" onClick={toggleDetails}>
                         
