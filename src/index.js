@@ -47,8 +47,8 @@ ReactDOM.render(
             <Route path='/items/:type' element={<ItemsPage />} />
             <Route path='/items/:type/:itemId/:name' element={<Protected Component={ItemsDetailsPage}/>} />
             <Route path='/admin' element={<AdminProtected Component={AdminPage}/>} />
-            <Route path='/admin/payment' element={<UserPaymentDetails/>}/>
-            <Route path="/payment/:_id/:productId" element={<AllDetailsOfUser/>} />
+            <Route path='/admin/payment' element={<AdminProtected Component={UserPaymentDetails}/>}/>
+            <Route path="/payment/:_id/:productId" element={<AdminProtected Component={AllDetailsOfUser}/>} />
             <Route path="/user-booking-details/:_id/:productId" element={<AdminProtected Component={UserBookingDetails}/>} />
 
           </Routes>
