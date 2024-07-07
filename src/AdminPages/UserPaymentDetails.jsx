@@ -55,7 +55,7 @@ function UserPaymentDetails() {
      
 
       const bookings=Array.isArray(paymentData)?paymentData:[paymentData];
-      const sortedBookings = [...bookings].sort((a, b) => a.productId.localeCompare(b.productId));
+      const sortedBookings = [...bookings].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
     
     return (
         <>
