@@ -39,7 +39,7 @@ function UserPaymentDetails() {
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
 
-    const sortedBookings = [...paymentData].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    const sortedBookings = [...paymentData].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     return (
         <>
