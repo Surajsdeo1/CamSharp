@@ -346,7 +346,7 @@ const UserBookingDetails = () => {
                     </div>
                     {/*  booking details */}
 
-                    <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-80 ml-14">
+                    <div className="flex items-center justify-center h-auto bg-sky-400 shadow-xl rounded-lg mt-8 w-72 ml-14">
                         <div className="  md:max-w-3xl lg:max-w-4xl xl:max-w-5xl pt-2  ">
                             {/* Gradient Overlay */}
                             <div className="text-center mb-2 ">
@@ -357,35 +357,35 @@ const UserBookingDetails = () => {
 
                                 <div className="space-y-2  pt-4  pl-1 ">
 
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64 ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">ProductId:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.productId}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64 ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">Quantity:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.quantity}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72  ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64  ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">Date:</span>
                                         <span className="text-gray-700 font-extrabold">{formatDate(booking.date)}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72 ml-1 mr-2   border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64 ml-1 mr-2   border shadow-lg">
                                         <span className="font-bold text-gray-900">Time:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.time}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72  ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64  ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">Duration:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.duration}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72  ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64  ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">Location:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.location}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72  ml-1 mr-2  border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64  ml-1 mr-2  border shadow-lg">
                                         <span className="font-bold text-gray-900">Name:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.name}</span>
                                     </div>
-                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-72  ml-1 mr-2   border shadow-lg">
+                                    <div className="flex items-center justify-between rounded-lg p-3 bg-gray-100 w-64  ml-1 mr-2   border shadow-lg">
                                         <span className="font-bold text-gray-900">WhatsApp No:</span>
                                         <span className="text-gray-700 font-extrabold">{booking.mobilenumber}</span>
                                     </div>
