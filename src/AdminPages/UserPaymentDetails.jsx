@@ -13,6 +13,7 @@ function UserPaymentDetails() {
     const [showDetails, setShowDetails] = useState(false);
     const [paymentData, setPaymentData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
    
     const detailsRef = useRef(null);
 
@@ -35,17 +36,17 @@ function UserPaymentDetails() {
             const data = await response.json();
             setPaymentData(data);
           } catch (error) {
+            setError(error.message);
+          } finally {
             setLoading(false);
-           
-          } 
-           
-          
+          }
         };
     
         fetchData();
       }, []);
     
       if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error: {error}</p>;
      
 
       const bookings=Array.isArray(paymentData)?paymentData:[paymentData];
