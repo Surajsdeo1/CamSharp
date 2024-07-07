@@ -71,6 +71,7 @@ const AdminPage = () => {
     };
 
     return (
+        <>
         <div className="bg-sky-300  min-h-screen pb-12">
             {/* Admin Details */}
             <div className="relative z-10">
@@ -153,6 +154,7 @@ const AdminPage = () => {
             ))}
             <AdminNavbar />
         </div>
+        </>
     );
 };
 

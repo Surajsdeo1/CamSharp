@@ -16,9 +16,11 @@ import BookingDetails from './ProfilePageAllData/BookingDetails';
 import ItemsPage from './Pages/ItemsPage';
 import ItemsDetailsPage from './Pages/ItemsDetailsPage';
 import AdminPage from './AdminPages/Admin';
+import UserPaymentDetails from './AdminPages/UserPaymentDetails';
 import UserBookingDetails from './AdminPages/UserBookingDetails';
 import Protected from './Components/Protected';
 import AdminProtected from './Components/Adminprotected';
+import AllDetailsOfUser from './AdminPages/AllDetailsOfUser';
 
 const root = document.getElementById('root');
 
@@ -45,6 +47,8 @@ ReactDOM.render(
             <Route path='/items/:type' element={<ItemsPage />} />
             <Route path='/items/:type/:itemId/:name' element={<Protected Component={ItemsDetailsPage}/>} />
             <Route path='/admin' element={<AdminProtected Component={AdminPage}/>} />
+            <Route path='/admin/payment' element={<UserPaymentDetails/>}/>
+            <Route path="/payment/:_id/:productId" element={<AllDetailsOfUser/>} />
             <Route path="/user-booking-details/:_id/:productId" element={<AdminProtected Component={UserBookingDetails}/>} />
 
           </Routes>
