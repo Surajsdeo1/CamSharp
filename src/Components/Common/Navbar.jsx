@@ -257,7 +257,7 @@ function Navbar() {
                                 </li>
                                 <li className="nav-item">
                                     <Link className={`nav-link  ${isNavLinkActive("/Gallery") ? "active" : ""
-                                        }`} to="/Gallery">
+                                        }`} to="/gallery">
                                         Gallery
                                     </Link>
                                 </li>
