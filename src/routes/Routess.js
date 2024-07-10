@@ -23,6 +23,7 @@ import AdminProtected from "../Components/Adminprotected";
 import MainContainer from "../Components/Core/MainContainer";
 import ProductPage from "../Pages/ProductPage";
 import Footernavbar from "../Components/Common/Footernavbar";
+import Gallery from "../Pages/Gallery";
 
 const Routess = () => {
   const [shouldScrollToTop, setShouldScrollToTop] = useState(false);
@@ -43,6 +44,8 @@ const Routess = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<MainContainer />} />
+        <Route path='/gallery' element={<Gallery />} />
+
         <Route path='/about' element={<AboutPage />} />
         <Route path='/career' element={<CareerPage />} />
         <Route path='/products' element={<ProductPage />} />

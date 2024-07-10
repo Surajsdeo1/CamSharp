@@ -41,7 +41,10 @@ const Footernavbar = () => {
         className="navbar navbar-expand-lg   fixed-bottom d-lg-none d-md-none d-sm-block  shadow-0"
       >
         <div className="container-fluid d-flex justify-content-around  align-items-center p-1">
+          {/*  */}
+          <Link className="text-center" style={{ fontSize: "1.4rem" }} to="/gallery">
           <i className="fi fi-sr-house-chimney"></i>
+          </Link>
 
           <Link className="text-center" style={{ fontSize: "1.4rem" }} to="/items/camera">
             <i className="fi fi-rr-camera iconColor"></i>
