@@ -87,54 +87,56 @@ function  LoginPage(){
     return (
       <>
      
-        <div id="login-section">
-          <div className="login-container">
-            <div className="login-logo">
-              <i className="text-blue-500 text-xl h-8 lg:h-auto fi fi-bs-aperture"></i>
-              <h1 className="text-blue-500 text-xl font-bold">CamSharp</h1>
-              <p className="text-gray-500 text-sm mt-2">Your premier destination for photography</p>
-            </div>
-            <div className="login-form-container">
-              <h1 className="text-2xl font-semibold mb-4">Admin Log In</h1>
-              <form  onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-                <div className='input-group'>
-                  <i className="fi fi-bs-smartphone pt-2 text-sky-500"></i>
-                  <input
-                    type="text"
-                    name="mobileNumber"
-                    id="mobileNumber_id"
-                    placeholder="Mobile Number"
-                    value={formValues.mobileNumber}
-                    onChange={handleInputChange}
-                    className="input-field"
-                  />
-                </div>
-                <div className='input-group'>
-                  <i className="fi fi-bs-password pt-2 text-sky-500"></i>
-                  <input
-                    type="password"
-                    name="password"
-                    id="password_id"
-                    placeholder="Password"
-                    value={formValues.password}
-                    onChange={handleInputChange}
-                    className="input-field"
-                  />
-                </div>
-                <div className="login-actions">
-                  <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-600 transition duration-300 ease-in-out">
-                    Log In
-                    <i className="fi fi-bs-address-card pl-2 text-sm"></i>
-                  </button>
-                  <a href="/forgot" className="text-gray-500 hover:text-blue-500 pl-2">Forgot Password?</a>
-                </div>
-              </form>
-              {errors && <span className="text-red-500 text-sm font-bold">{errors}</span>}
-            
-            </div>
+     <div id="login-section" class="d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-sm p-4">
+    <div class="text-center mb-4">
+      <i class="text-primary h2 fi fi-bs-aperture"></i>
+      <h1 class="text-primary h4 font-weight-bold">CamSharp</h1>
+      <p class="text-muted mt-2">Your premier destination for photography</p>
+    </div>
+    <div>
+      <h1 class="h5 font-weight-semibold mb-4">Admin Log In</h1>
+      <form onSubmit={handleFormSubmit} class="d-flex flex-column gap-4">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-light border-0"><i class="fi fi-bs-smartphone text-primary"></i></span>
           </div>
+          <input
+            type="text"
+            name="mobileNumber"
+            id="mobileNumber_id"
+            placeholder="Mobile Number"
+            value={formValues.mobileNumber}
+            onChange={handleInputChange}
+            class="form-control"
+          />
         </div>
-      
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-light border-0"><i class="fi fi-bs-password text-primary"></i></span>
+          </div>
+          <input
+            type="password"
+            name="password"
+            id="password_id"
+            placeholder="Password"
+            value={formValues.password}
+            onChange={handleInputChange}
+            class="form-control"
+          />
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <button type="submit" class="btn btn-primary font-weight-semibold">
+            Log In
+            <i class="fi fi-bs-address-card pl-2"></i>
+          </button>
+          <a href="/forgot" class="text-muted">Forgot Password?</a>
+        </div>
+      </form>
+      {errors && <span class="text-danger font-weight-bold">{errors}</span>}
+    </div>
+  </div>
+</div>
       </>
     );
   }
