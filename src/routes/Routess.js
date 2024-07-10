@@ -6,6 +6,7 @@ import CareerPage from "../Pages/CareerPage";
 import Protected from "../Components/Protected";
 import ProfilePage from "../Pages/ProfilePage";
 import ProfileInformation from "../ProfilePageAllData/ProfileInformation";
+import ManageAddress from "../ProfilePageAllData/ManageAddress";
 import LoginPage from "../Pages/LoginPage";
 import SignupPage from "../Pages/SignupPage";
 import ForgetPassword from "../Components/Core/ForgetPassword";
@@ -51,6 +52,7 @@ const Routess = () => {
         <Route path='/products' element={<ProductPage />} />
         <Route path='/profile' element={<Protected Component={ProfilePage} />} />
         <Route path='/information' element={<Protected Component={ProfileInformation} />} />
+        <Route path='/user/address' element={<Protected Component={ ManageAddress} />}/>
 
         <Route path='/login' element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />

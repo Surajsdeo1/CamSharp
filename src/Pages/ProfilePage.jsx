@@ -53,6 +53,11 @@ function ProfileSection() {
       navigate(`/user-booking`);
     }
   };
+  const AddressManageHandle =()=>{
+    if(userData){
+      navigate(`/user/address`)
+    }
+  }
 
   const LogOutButtonHandle = () => { 
     setLogOutHandle(true); 
@@ -139,7 +144,7 @@ function ProfileSection() {
                   <ul className="ml-8 text-sm text-gray-500">
                     <li style={{cursor: 'pointer'}} onClick={ProfileInformationHandle}>   Profile Information </li>
                     <li style={{cursor: 'pointer'}} onClick={ProfileBooking}>Booking Details</li>
-                    <li style={{cursor: 'pointer'}}>Manage Address</li>
+                    <li style={{cursor: 'pointer'}} onClick={AddressManageHandle}>Manage Address</li>
                     <li style={{cursor: 'pointer'}}>Adhar Card Information</li>
                   </ul>
                 </div>
