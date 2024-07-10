@@ -1,100 +1,325 @@
-import React, { useState } from 'react';
-import Logo from "..//../Assists/LOGOO.png";
-import { Link } from 'react-router-dom';
-import './searchbar.css';
+import React, { useState, useEffect } from 'react';
+import Config from "../../utils/Config";
+import { Link, useLocation } from "react-router-dom";
+import "./searchbar.css"
 
+function Navbar() {
+    const [user, setUser] = useState(null);
+    const [darkmode, setDarkmode] = useState(false);
+    const location = useLocation();
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [isSearchBar, setIsSearchBar] = useState(false);
 
-const Navbar = () => {
-    const [isMenuOpen, setMenuOpen] = useState(false);
-    
-    const token = sessionStorage.getItem('token');
-   
+    const isNavLinkActive = (path) => {
+        return location.pathname.includes(path);
+    };
 
-    const toggleMenu = () => {
-        setMenuOpen(!isMenuOpen);
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = sessionStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await fetch(`${Config.BASE_URL}/api/users/profile`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch user data');
+                    }
+                    const data = await response.json();
+                    setUser(data);
+                } catch (error) {
+                    console.error("Error fetching user information:", error);
+                }
+            }
+        };
+
+        fetchUserData();
+    }, []);
+
+    useEffect(() => {
+        // Check local storage for dark mode preference on initial load
+        const storedDarkMode = localStorage.getItem('darkmode');
+        if (storedDarkMode) {
+            const isDarkMode = JSON.parse(storedDarkMode);
+            setDarkmode(isDarkMode);
+            document.body.classList.toggle('dark-theme', isDarkMode);
+        }
+    }, []);
+
+    useEffect(() => {
+        setSidebarOpen(false);
+    }, [location]);
+
+    const toggleDarkMode = () => {
+        const isDarkMode = !darkmode;
+        setDarkmode(isDarkMode);
+
+        // Toggle dark theme class on body
+        const body = document.body;
+        localStorage.setItem('darkmode', JSON.stringify(isDarkMode));
+        body.classList.toggle('dark-theme', isDarkMode);
+    };
+
+    const toggleMode = () => {
+        setSidebarOpen(!sidebarOpen);
+    }
+    const toogleSearch = () => {
+        setIsSearchBar(!isSearchBar);
+    }
+
+    const logout = () => {
+        sessionStorage.removeItem("token");
+        window.location.href = "/";
     };
 
     return (
         <>
-            <div className=''>
 
-
-                <div id="header" className="flex fixed top-0 justify-between items-center w-full h-auto lg:h-20 px-6 text-white ring-2 shadow-gray-50/50 border-2 border-gray-300 shadow-xl bg-blue-500">
-                    {/* Logo and Title */}
-                    <div className="flex items-center mb-2 mt-2 lg:mb-0 lg:mr-6">
-                        <img src={Logo} alt="Logo" className="h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 " />
-                        <h1 className='font-extrabold text-xxl'>CamSharp</h1>
+            <nav className="navbar navbar-expand-lg  fixed-top d-lg-none d-md-none d-sm-block  shadow-0">
+                <div className="container-fluid">
+                    <Link
+                        className="navbar-brand text-center text-decoration-none"
+                        to="/"
+                    >
+                        <img
+                            src="../img/logo.png"
+                            height="35"
+                            title="codesaarthi"
+                            alt="Codesaarthi  Logo"
+                            loading="lazy"
+                        />
+                    </Link>
+                    <div className='d-flex'>
+                        {isSearchBar &&
+                            <div >
+                                <input type="text" className='search-container mx-1 rounded-6 ps-2' placeholder="Search..." />
+                            </div>
+                        }
+                        <i className="fi fi-rs-search me-4" onClick={toogleSearch}></i>
+                        <i className="fi fi-sr-chart-simple-horizontal iconColor pe-2" style={{ fontSize: '1.2rem' }} onClick={toggleMode}></i>
                     </div>
-
-                    {/* Search bar */}
-                    {!token && (<div className="flex justify-around w-full lg:w-auto lg:mx-4">
-                        <div className="relative ml-4 lg:ml-0">
-                            <input className="bg-white border-gray-300 text-gray-700 px-4 py-2 rounded-full w-32 lg:w-full focus:outline-none focus:border-blue-500" type="text" name="searchbar" id="searchbar_id" placeholder="Search..." />
-                            <button className="absolute right-0 top-0 mt-2 mr-3 text-blue-500">
-                                <i className="fi fi-bs-search"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    )}
-                    {/* after logIn */}
-                    {token && (<div className="flex justify-around w-full ml-24 lg:w-auto lg:mx-4 bg-transparent">
-                        <div className="relative ml-8 lg:ml-0 search-container">
-                         <input
-                                className="bg-transparent border-2 border-white text-gray-700 px-4 py-2 rounded-lg w-32 lg:w-48 focus:outline-none focus:border-blue-500"
-                                type="text"
-                                name="searchbar"
-                                id="searchbar_id"
-                                placeholder="Search..."
-                            />
-                        
-                      
-                            <button className="absolute right-0 top-0 mt-2 mr-3 text-white text-xl">
-                                <i className="fi fi-bs-search" ></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    )}
-
-                    {/* Log In / Sign In buttons */}
-                    {!token && (<div className="hidden lg:flex lg:items-center">
-
-                        <Link to='/login'>
-
-                            <button className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 mr-2 rounded-md border-b-2">Log In</button>
-
-                        </Link>
-                        <Link to='/signup'>
-                            <button className="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-md border-b-2">Sign In</button>
-
-                        </Link></div>
-                    )}
-
-                    {/* Menu icon for mobile */}
-                    {!token && (<div className='lg:hidden '>
-                        <button className="text-white hover:text-blue-600" onClick={toggleMenu}>
-                            <i className="fi fi-bs-list"></i>
-                        </button>
-                    </div>
-                    )}
                 </div>
+            </nav>
 
-                {/* Option button container */}
-                <div className={`absolute top-12 right-0  lg:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
-                    <div className="flex flex-col bg-blue-500 rounded shadow-lg">
-                        <Link to='/login'>
-                            <button className="hover:bg-blue-600 px-4 py-2 rounded-md text-white mb-2 border-b-2">Log In</button>
-                        </Link>
+            {/* sidebaar */}
+            <div
+                style={{ zIndex: "99" }}
+                className={`sidebar ${sidebarOpen ? "show" : ""
+                    } d-lg-none d-md-none d-sm-block`}
+            >
+                <div className="pt-5 mt-2">
+                    <ul className="nav flex-column text-start ms-4">
+                        {!user ?
+                            <>
+                                <li className="nav-item ">
+                                    <Link
+                                        className={`nav-link ${isNavLinkActive("/signup") ? "active" : ""
+                                            }`}
+                                        to="/signup"
+                                    >
+                                        <i className="fi fi-rs-rocket-lunch pe-2"></i>
+                                        Create Account
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link ${isNavLinkActive("/login") ? "active" : ""
+                                            }`}
+                                        to="/login"
+                                    >
+                                        <i className="fi fi-br-sign-in-alt pe-2"></i>
+                                        Log in
+                                    </Link>
+                                </li>
+                            </>
+                            :
+                            <>
+                                <li className="nav-item">
+                                    <Link
+                                        className={`nav-link ${isNavLinkActive("/profile") ? "active" : ""
+                                            }`}
+                                        to="/profile"
+                                    >
+                                        {" "}
+                                        <i className="fi fi-ss-user iconColor  pe-2"></i>
+                                        Profile
+                                    </Link>
+                                </li>
+                            </>
+                        }
 
-                        <Link to='/signup'>
-                            <button className="hover:bg-blue-600 px-4 py-2 rounded-md text-white border-b-2">Sign In</button>
-                        </Link>
-                    </div>
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${isNavLinkActive("/about") ? "active" : ""
+                                    }`}
+                                to="/about"
+                            >
+                                {" "}
+                                <i className="fi fi-sr-info pe-2 "></i>
+                                About Us
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${isNavLinkActive("/products") ? "selected" : ""
+                                    }`}
+                                to="/products"
+                            >
+                                {" "}
+                                <i className="fi fi-sr-camera-viewfinder pe-2"></i>
+                                Product
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                className={`nav-link ${isNavLinkActive("/Problems") ? "selected" : ""
+                                    }`}
+                                to="/Gallery"
+                            >
+                                {" "}
+                                <i className="fi fi-sr-layout-fluid pe-2"></i>
+                                Gallery
+                            </Link>
+                        </li>
+
+                        <li className="nav-item" onClick={toggleDarkMode}  >
+                            <i className="fi fi-sr-moon-stars ps-3 pe-2"></i>      Dark Mode
+                        </li>
+
+
+                        {user && <>
+                            <li className="nav-item">
+                                <Link
+                                    className={`nav-link ${isNavLinkActive("/user-booking") ? "selected" : ""
+                                        }`}
+                                    to="/user-booking"
+                                >
+                                    <i className="fi fi-rr-memo-circle-check pe-2"></i>
+                                     Booking Details
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link
+                                    onClick={logout}
+                                    className={`nav-link ${isNavLinkActive("/") ? "selected" : ""
+                                        }`}
+                                    to="/"
+                                >
+                                    <i className="fi fi-br-sign-in-alt pe-2"></i>
+                                    logout
+                                </Link>
+                            </li>
+                        </>}
+                    </ul>
                 </div>
             </div>
 
+            {/* <!-- Navbar For big screen--> */}
+            <nav
+                className="navbar navbar-expand-lg sticky sticky-top p-0 d-lg-block d-md-block d-none  shadow-6"
+                style={{ zIndex: "100000!important" }}
+            >
+                <div
+                    className="container-fluid "
+                    style={{
+                        zIndex: "1000!important",
+                    }}
+                >
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                        {/* Navbar brand */}
+                        <Link className="navbar-brand text-center ms-4 text-warning" to="/">
+                            <img
+                                src="img/logo.png"
+                                alt="logo"
+                                title="camsharp logo"
+                                className="img-fluid"
+                                style={{ height: "35px" }}
+                            />
+                            <h1 style={{ fontSize: "24px" }} className="mb-0 ms-2">
+                                camSharp
+                            </h1>
+                        </Link>
 
+                        <div
+                            className="collapse navbar-collapse"
+                            id="navbarSupportedContent"
+                        >
+                            <ul className="navbar-nav mx-auto d-flex justify-content-between   w-50">
+
+                                <li className="nav-item">
+                                    <Link className={`nav-link  ${isNavLinkActive("/products") ? "active" : ""
+                                        }`} to="/products">
+                                        Product
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link  ${isNavLinkActive("/Gallery") ? "active" : ""
+                                        }`} to="/Gallery">
+                                        Gallery
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={`nav-link  ${isNavLinkActive("/about") ? "active" : ""
+                                        }`} to="/about">
+                                        About us
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button
+                        className="btn btn-sm rounded-8  me-2"
+                        onClick={toggleDarkMode}
+                    >
+                        <i className="fi fi-ss-moon-stars"></i>
+                    </button>
+
+                    <div className="d-lg-block d-md-block d-none d-flex justify-content-center align-items-center">
+                        {user ? (
+                            <>
+                                <div className="d-flex align-items-center">
+                                    <div className="nav-item " style={{ zIndex: "9999" }}>
+                                        <button className="btn btn-floating">
+                                            {user ? (
+                                                <>
+                                                    <Link to="/profile">
+                                                        <img
+                                                            src={user.image}
+                                                            className="rounded-circle border"
+                                                            height="28"
+                                                            alt="."
+                                                            loading="lazy"
+                                                        />
+                                                    </Link>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Link to="/profile">
+                                                        <div className="rounded-circle pt-2">
+                                                            <i className="fi fi-ss-user text-primary"></i>
+                                                        </div>
+                                                    </Link>
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <Link to="/login">
+                                    <button className="btn btn-sm     text-capitalize">
+                                        Log in
+                                    </button>
+                                </Link>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </nav>
 
         </>
     );

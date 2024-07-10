@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 
-function ForgetPassword() {
+ function ForgetPassword(){
     const navigate=useNavigate();
     const [clickedVerify, setClickedVerify] = useState(true);
 
@@ -129,5 +129,6 @@ function ForgetPassword() {
         </>
     );
 }
+
 
 export default ForgetPassword;

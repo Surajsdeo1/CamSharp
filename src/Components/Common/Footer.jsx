@@ -1,55 +1,122 @@
 import React from 'react';
-
-function Footer() {
-    return (
-        <div id="footer" className="bg-gray-100 text-gray-700 mt-6">
-            {/* Heading footer */}
-            <div id="footer-heading" className="py-4 text-center border-b border-gray-300">
-                <h2 className="text-xl font-bold">Back To Top</h2>
+import { Link } from 'react-router-dom';
+ 
+function Footer({ onFooterClick }){ 
+    return (  
+        <footer  className="py-3">
+        <div className="container-fluid g-0 mb-lg-0 mb-5">
+          <div className="row g-0">
+            <div className="col-lg-9 col-12 d-flex">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-lg-5 col-12 text-center">
+                    {/* <!-- Additional Information --> */}
+                    <div className="pb-lg-3 d-flex">
+                      <p>
+                        © 2024 camSharp. All rights reserved by{" "}
+                        <Link to="https://codesaarthi.com">
+                          camSharp.com
+                        </Link>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-lg-7  col-12 ">
+                    <div
+                      className="pb-lg-3 d-flex justify-content-evenly"
+                      style={{ color: "#999999" }}
+                    >
+                      <Link
+                        to="/privacy_policy"
+                        onClick={onFooterClick}
+                        className="text-body heading2"
+                      >
+                        Privacy Policy
+                      </Link>{" "}
+                      |
+                      <Link
+                        to="/terms_conditions"
+                        onClick={onFooterClick}
+                        className="text-body ms-1 heading2"
+                      >
+                        Terms Of Service
+                      </Link>{" "}
+                      |
+                      <Link
+                        to="/cookies"
+                        onClick={onFooterClick}
+                        className="text-body ms-1 heading2"
+                      >
+                        Cookie Settings
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div className="col-lg-3 col-0 d-lg-block d-none ">
+              <div
+                className="pb-3 d-flex justify-content-end "
+                style={{ color: "FFFFFF" }}
+              >
+                {/* <!-- Section: Social media --> */}
+                <section className=" SocialLinks">
+                  <Link
+                    className="btn btn-sm ms-3"
+                    to="https://www.instagram.com/codesaarthi/"
+                    role="button" 
+                    target="_blank"
+                  >
+                    <i className="fi fi-brands-instagram  rounded-8"></i>
+                  </Link>
 
-            {/* Sections */}
-            <div id="footer-sections" className="flex flex-col lg:flex-row justify-center lg:justify-between px-4 py-6 lg:px-10">
-                {/* About Us */}
-                <div id="about-us" className="flex flex-col mb-6 lg:mb-0">
-                    <h4 className="font-semibold mb-2 text-gray-700">Get To Know Us</h4>
-                    <a href="/about" className="hover:text-blue-500">About Us</a>
-                    <a href="/career" className="hover:text-blue-500">Careers</a>
-                    <a href="/press" className="hover:text-blue-500">Press Releases</a>
-                    <a href="shop" className="hover:text-blue-500">CamSharp Shop</a>
-                </div>
+                  {/* <!-- Whatsapp --> */}
+                  <Link
+                    className="btn btn-sm ms-3"
+                    to="https://chat.whatsapp.com/BQV3Uv4nlU7IcrnjXHASpE"
+                    role="button" 
+                    target="_blank"
+                  >
+                    <i className="fi fi-brands-whatsapp rounded-8"></i>
+                  </Link>
 
-                {/* Contact */}
-                <div id="contact" className="flex flex-col mb-6 lg:mb-0">
-                    <h4 className="font-semibold mb-2 text-gray-700">Contact With Us</h4>
-                    <a href="/whatsapp" className="hover:text-blue-500">Whatsapp</a>
-                    <a href="/insta" className="hover:text-blue-500">Instagram</a>
-                    <a href="/twitter" className="hover:text-blue-500">Twitter</a>
-                    <a href="facebook" className="hover:text-blue-500">Facebook</a>
-                </div>
-
-                {/* Make Money */}
-                <div id="make-money" className="flex flex-col mb-6 lg:mb-0">
-                    <h4 className="font-semibold mb-2 text-gray-700">Make Money With Us</h4>
-                    <a href="sell" className="hover:text-blue-500">Sell On CamSharp</a>
-                </div>
-
-                {/* Help */}
-                <div id="help" className="flex flex-col">
-                    <h4 className="font-semibold mb-2 text-gray-700">Let Us Help You</h4>
-                    <a href="profile" className="hover:text-blue-500">Your Account</a>
-                    <a href="return" className="hover:text-blue-500">Return Center</a>
-                    <a href="help" className="hover:text-blue-500">Help Center</a>
-                </div>
+                  {/* <!-- Additional social media icons can be added here --> */}
+                </section>
+              </div>
             </div>
-
-            {/* Copy Rights */}
-            <div id="copy-rights" className="text-center py-4 text-gray-500">
-                <p>Conditions of Use & Book Privacy Notice</p>
-                <p>&copy; 2024, CamSharp.com, Inc, or its officials</p>
-            </div>
+            
+            <div className="d-lg-none d-block ">
+                    <div className="pb-3" style={{ color: "FFFFFF" }}>
+                      {/* <!-- Section: Social media --> */}
+                      <section className="row g-0">
+                        <div className="col-6 text-start">
+                          <Link
+                            className="btn btn-sm ms-3"
+                            to="https://www.instagram.com/codesaarthi/"
+                            role="button" 
+                            target="_blank"
+                          >
+                            <i className="fi fi-brands-instagram  rounded-8"></i>
+                          </Link>
+                        </div>
+                        {/* <!-- Whatsapp --> */}
+                        <div className="col-6 text-end">
+                          <Link
+                            className="btn btn-sm ms-3"
+                            to="https://chat.whatsapp.com/BQV3Uv4nlU7IcrnjXHASpE"
+                            role="button" 
+                            target="_blank"
+                          >
+                            <i className="fi fi-brands-whatsapp rounded-8"></i>
+                          </Link>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+          </div>
         </div>
+      </footer>
     );
 }
 
 export default Footer;
+ 

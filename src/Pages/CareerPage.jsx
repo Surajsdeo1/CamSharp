@@ -3,8 +3,7 @@ import Navbar from "../Components/Common/Navbar";
 import Footer from "../Components/Common/Footer";
 import FooterBar from '../Components/Common/FooterBar';
 
-
-function Careers() {
+function Careers(){
     return (
         <>
             <Navbar />
@@ -39,5 +38,5 @@ function Careers() {
         </>
     );
 };
-
-export default Careers;
+ 
+export default  Careers;

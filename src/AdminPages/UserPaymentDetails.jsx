@@ -1,20 +1,17 @@
 import React,{ useState,useEffect,useRef } from 'react';
-
 import ProfileImg from '../Images/boy.webp';
 import './Admin.css';  // Import the CSS file
 import Config from '../utils/Config';
 import { Link } from 'react-router-dom';
 import AdminNavbar from '../Components/Common/AdminNavbar';
 
-
-
-function UserPaymentDetails() {
+function UserPaymentDetails(){
 
     const [showDetails, setShowDetails] = useState(false);
     const [paymentData, setPaymentData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedDate, setSelectedDate] = useState(null);
+    // const [selectedDate, setSelectedDate] = useState(null);
    
     const detailsRef = useRef(null);
 
@@ -158,4 +155,4 @@ function UserPaymentDetails() {
     )
 }
 
-export default UserPaymentDetails
+export default UserPaymentDetails;

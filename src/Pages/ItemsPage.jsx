@@ -1,75 +1,63 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import Navbar from "../Components/Common/Navbar";
+import { useParams, Link } from "react-router-dom"; 
 import CamData from "../Alldata/CamData";
 import LensData from "../Alldata/LensData";
-import AccessData from "../Alldata/AccessoriesData";
-import FooterBar from '../Components/Common/FooterBar';
+import AccessData from "../Alldata/AccessoriesData"; 
 
 
-function ItemsPage() {
+function ItemsPage (){
     let { type } = useParams();
-   
+ 
     const [filteredProducts, setFilteredProducts] = useState([]);
-
-    const primaryText = "text-gray-700";
-    const secondaryText = "text-gray-500";
-    const primaryBg = "bg-white";
-
     useEffect(() => {
-       
-                if (type === "camera") {
-                    setFilteredProducts(CamData);
-                } else if (type === "lens") {
-                    setFilteredProducts(LensData);
-                } else if (type === "accessories") {
-                    setFilteredProducts(AccessData);
-                }
 
-          
-
+        if (type === "camera") {
+            setFilteredProducts(CamData);
+        } else if (type === "lens") {
+            setFilteredProducts(LensData);
+        } else if (type === "accessories") {
+            setFilteredProducts(AccessData);
+        }
     }, [type]);
 
     return (
         <>
-            <div className=" ">
-                <Navbar />
-                <FooterBar />
+            <div className="container-fluid g-0 design">
 
-                <div id="item-list" className={`${primaryBg} text-gray-700 mt-12 sm:px-8 pt-1`}>
-                    <div className="text-black text-center md:mt-4">
-                        <h1 className="text-xl font-extrabold text-blue-600 border-b pb-1">{type}</h1>
-                    </div>
-                    <div className="flex flex-wrap justify-center h-screen">
-                        {filteredProducts.map((item,index) => (
-                            <div key={index} className="mt-1 ml-1 sm:mx-4 sm:w-96 w-48 cursor-pointer">
-                                <Link to={{
-                                    pathname: `/items/${type}/${item.id}/${item.Name}`,
-                                    state: {
-                                        type: type,
-                                        itemId: item.id,
-                                        name: item.Name,
-                                        day: item.Day,
-                                        amount: item.Amount,
-                                        imgSrc: item.ImgSrc
-                                    }
-                                }} className="block">
-                                    <div className="item-card bg-gray-100 border border-gray-300 shadow-lg rounded-lg p-1 border-2">
-                                        <div className="item-image ml-12 overflow-hidden rounded-lg border">
-                                            <img className="w-full h-full object-cover" src={item.ImgSrc} alt="Item" />
-                                        </div>
-                                        <div className="item-details">
-                                            <h2 className={`text-sm font-bold ${primaryText}`}>{item.Name}</h2>
-                                            <h3 className={`${secondaryText}`}>{item.Day}</h3>
-                                        </div>
-                                        <div className="left-4 w-full text-center bg-blue-500 rounded">
-                                            <h4 className="flex items-center justify-center font-bold text-xl">
-                                                <i className="text-sm p-1  fi fi-bs-indian-rupee-sign"></i>
-                                                <span className=" pr-1">{item.Amount}</span>
-                                            </h4>
+                <div id="item-list" className="container">
+                    <h1 className="text-center text-capitalize">{type}</h1>
+                    <div className="row">
+                        {filteredProducts.map((item, index) => (
+                            <div key={index} className="col-lg-6 col-12 my-2">
+                                <div className="card p-3">
+                                    <div className="d-flex justify-content-center align-item-center">
+                                        <img className="img-fluid" src={item.ImgSrc} alt="Item" style={{ height: '200px', width: '200px' }} />
+                                    </div>
+                                    <div className="">
+                                        <h2 className={`text-center`}>{item.Name}</h2>
+                                        <small className={` ms-2`}>{item.Day}</small>
+                                    </div>
+                                    <div className="row mb-2">
+                                        <div className="col-6"> <div className="btn btn-block rounded-6 disabled" > <h5 className="text-success fw-bold">₹ {item.Amount} </h5> </div>  </div>
+                                        <div className="col-6"> 
+                                        <Link to={{
+                                            pathname: `/items/${type}/${item.id}/${item.Name}`,
+                                            state: {
+                                                type: type,
+                                                itemId: item.id,
+                                                name: item.Name,
+                                                day: item.Day,
+                                                amount: item.Amount,
+                                                imgSrc: item.ImgSrc
+                                            }
+                                        }}>
+                                            <div className="btn btn-block text-capitalize rounded-6 bg-warning"> <h5>  Continue <i className="fi fi-br-sign-out-alt mt-3 ms-1"></i> </h5>  </div>
+                                         
+                                        </Link>
                                         </div>
                                     </div>
-                                </Link>
+                                </div>
+
                             </div>
                         ))}
                     </div>

@@ -6,7 +6,7 @@ import AdminNavbar from '../Components/Common/AdminNavbar';
 import Config from '../utils/Config';
 
 
-const AdminPage = () => {
+function AdminPage(){
     const [recentBooking, setRecentBooking] = useState([]);
     const [newData, setNewData] = useState(false);
 
@@ -157,5 +157,6 @@ const AdminPage = () => {
         </>
     );
 };
+
 
 export default AdminPage;

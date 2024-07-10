@@ -5,7 +5,7 @@ import Config from '../utils/Config';
 
 
 
-function LoginPage() {
+function  LoginPage(){
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from || '/admin';
@@ -138,6 +138,7 @@ function LoginPage() {
       </>
     );
   }
-  
-  export default LoginPage;
+ 
+ 
+  export default  LoginPage ;
   

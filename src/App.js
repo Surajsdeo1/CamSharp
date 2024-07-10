@@ -1,32 +1,13 @@
-
-// import './App.css';
 import React from 'react';
-import Navbar from './Components/Common/Navbar';
-
-import MainContainer from './Components/Core/MainContainer';
-// import Carousel from './Components/Common/Crousal';
-
-import FooterBar from '../src/Components/Common/FooterBar';
-
-//import { BrowserRouter as  Route, BrowserRouter, Routes } from 'react-router-dom';
-
-
+import './App.css';
+import Routess from './routes/Routess';
 function App() {
   return (
-    <>
-    
-    <Navbar/>
-    {/* <Carousel/> */}
-    <MainContainer/>
-    <FooterBar/>
-   
-
-
-
-
-    
-    </>
+   <>
+    <Routess/>
+   </>
   );
 }
 
 export default App;
+

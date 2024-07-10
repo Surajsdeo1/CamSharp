@@ -3,8 +3,7 @@ import Navbar from "../Components/Common/Navbar";
 import Footer from "../Components/Common/Footer";
 import FooterBar from '../Components/Common/FooterBar';
 
-
-function SellOnPage() {
+function SellOnPage (){
     return (
         <>
             <Navbar />
@@ -31,4 +30,7 @@ function SellOnPage() {
     );
 }
 
+
 export default SellOnPage;
+
+

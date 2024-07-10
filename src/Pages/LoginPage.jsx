@@ -1,18 +1,13 @@
 // src/pages/LoginPage.js
 import React, { useEffect, useState } from 'react';
 import Config from '../utils/Config';
-
-import Navbar from '../Components/Common/Navbar';
-import Footer from '../Components/Common/Footer';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-
-
-import '../styles/LoginPage.css';
 
 
 function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading , setLoading] = useState(false);
   const from = location.state?.from || '/profile';
 
   const [formValues, setFormValues] = useState({
@@ -25,13 +20,13 @@ function LoginPage() {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = sessionStorage.getItem('token');
-   
-    if (token) {
-      navigate(from); // Redirect if token is already present
-    }
-  };
-  fetchUserData();
-  }, [navigate,from]);
+
+      if (token) {
+        navigate(from); // Redirect if token is already present
+      }
+    };
+    fetchUserData();
+  }, [navigate, from]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,109 +39,128 @@ function LoginPage() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     setErrors("");
-
+    setLoading(true);
     if (!formValues.mobileNumber || !formValues.password) {
       setErrors("Both fields are required");
       setTimeout(() => {
         setErrors("");
       }, 2000);
+      setLoading(false);
       return;
     }
 
-    try {
-      console.log('login form value', formValues);
+    try {  
       const response = await fetch(`${Config.BASE_URL}/api/users/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formValues),
-            });
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formValues),
+      });
 
       if (response.ok) {
         const data = await response.json();
-        const token=data.token; // assuming token is returned in the response
-        sessionStorage.setItem('token',token);   // Save token to sessionStorage
-        navigate('/profile');
+        setLoading(false);
+        const token = data.token; // assuming token is returned in the response
+        sessionStorage.setItem('token', token);   // Save token to sessionStorage
+        navigate('/');
         setFormValues({
           mobileNumber: "",
           password: ""
-          
+
         });
-        
-        console.log('User loggin successfully ',data);
+ 
         setTimeout(() => {
-        
+
         }, 5000); // Clear message after 5 seconds
-    } else {
+      } else {
         const errorData = await response.json();
         setErrors(errorData.error);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors('Failed to submit the form');
+      setLoading(false);
     }
-} catch (error) {
-    console.error('Error submitting form:', error);
-    setErrors('Failed to submit the form');
-}
 
   };
 
   return (
     <>
-      <Navbar />
-      <div id="login-section">
-        <div className="login-container">
-          <div className="login-logo">
-            <i className="text-blue-500 text-xl h-8 lg:h-auto fi fi-bs-aperture"></i>
-            <h1 className="text-blue-500 text-xl font-bold">CamSharp</h1>
-            <p className="text-gray-500 text-sm mt-2">Your premier destination for photography</p>
-          </div>
-          <div className="login-form-container">
-            <h1 className="text-2xl font-semibold mb-4">Log In</h1>
+      <div className="container-fluid g-0 design">
+        <div >
+          <div className="row w-100 g-0">
+            <div className="col-lg-4 col-12">
+              <div className='mt-lg-5 p-2'>
+                <div className="text-center">
+                  <img src="img/logo.png" className='img-fluid' title='camSharp logo' alt="logo" style={{ height: '150px' }} />
+                  <h1 className="fw-bold">CamSharp</h1>
+                  <p className="text-secondary text-capitalize text-decoration-underline mt-2">Your premier destination for photography</p>
+                </div>
+                <div className="card p-2">
+                  <h1 className="text-center mb-4">Log In</h1>
 
-            <form onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-              <div className='input-group'>
-                <i className="fi fi-bs-smartphone pt-2 text-sky-500"></i>
-                <input
-                  type="text"
-                  name="mobileNumber"
-                  id="mobileNumber_id"
-                  placeholder="Mobile Number"
-                  value={formValues.mobileNumber}
-                  onChange={handleInputChange}
-                  className="input-field"
-                />
+                  <form onSubmit={handleFormSubmit} className='form-group'>
+                    <div className='input-group'>
+                      <i className="fi fi-bs-smartphone pt-2 text-sky-500"></i>
+                      <input
+                        type="text"
+                        name="mobileNumber"
+                        id="mobileNumber_id"
+                        placeholder="Mobile Number"
+                        value={formValues.mobileNumber}
+                        onChange={handleInputChange}
+                        className=" form-control w-100"
+                      />
+                    </div>
+                    <div className='input-group'>
+                      <i className="fi fi-bs-password pt-2 text-sky-500"></i>
+                      <input
+                        type="password"
+                        name="password"
+                        id="password_id"
+                        placeholder="Password"
+                        value={formValues.password}
+                        onChange={handleInputChange}
+                        className=" form-control w-100 my-2"
+                      />
+                    </div>
+                    <div className="text-end"> <Link to="/forgot" className="text-light">Forgot Password?</Link></div>
+
+                    <div>
+                      <button type="submit" className="btn text-capitalize w-100 text-light">
+                        {loading ? <>
+                            Welcome to camsharp... <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>             
+                           </> : <> 
+                           Log In  <i className="fi fi-sr-address-card ps-2"></i> 
+                           </>}
+                        
+                       
+                      </button>
+
+                      <div className="btn btn-block my-3 text-capitalize text-light"> <img src="img/Google.png" alt="google " className='img-fluid me-2' />Sign in With Google</div>
+                    </div>
+                  </form>
+                  {errors && <span className="text-danger fw-bold">{errors}</span>}
+                  <div className="d-flex my-3">
+                    <p>Don't have an account?</p> <Link to="/signup" className="ps-2 text-light text-decoration-underline">Sign Up</Link>
+                  </div>
+                <Link to="/admin-login" className="text-light">Admin Login</Link>
+                </div>
               </div>
-              <div className='input-group'>
-                <i className="fi fi-bs-password pt-2 text-sky-500"></i>
-                <input
-                  type="password"
-                  name="password"
-                  id="password_id"
-                  placeholder="Password"
-                  value={formValues.password}
-                  onChange={handleInputChange}
-                  className="input-field"
-                />
-              </div>
-              <div className="login-actions">
-                <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-600 transition duration-300 ease-in-out">
-                  Log In
-                  <i className="fi fi-bs-address-card pl-2 text-sm"></i>
-                </button>
-                <a href="/forgot" className="text-gray-500 hover:text-blue-500 pl-2">Forgot Password?</a>
-              </div>
-            </form>
-            {errors && <span className="text-red-500 text-sm font-bold">{errors}</span>}
-            <div className="login-footer">
-              <p className="text-sm text-gray-500">Don't have an account?</p>
-              <Link to="/signup" className="hover:text-blue-500 text-sm border-b border-sky-700">Sign Up</Link>
+            </div>
+            <div className="col-lg-8 d-lg-block d-md-block d-none">
+              <img src="img/Auth.jpg" className='w-100 img-fluid' alt="" />
             </div>
           </div>
-          <Link to="/admin-login" className="hover:text-blue-500 text-sm border-b border-sky-700">Admin Login</Link>
         </div>
       </div>
-      <Footer />
+
     </>
   );
 }
 
+
 export default LoginPage;
+

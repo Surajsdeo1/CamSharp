@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@babel/plugin-transform-optional-catch-binding": "^7.24.1",
+    "@react-oauth/google": "^0.12.1",
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

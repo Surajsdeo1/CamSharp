@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Common/Navbar';
-import FooterBar from '../Components/Common/FooterBar';
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '../Images/boy.webp';
 import Config from '../utils/Config';
+
 
 function BookingDetails() {
     const navigate = useNavigate();
@@ -35,7 +34,7 @@ function BookingDetails() {
 
                 const data = await response.json();
                 setUserData(data);
-               
+
                 setLoading(false);
 
                 if (data.length > 0) {
@@ -75,72 +74,79 @@ function BookingDetails() {
 
     return (
         <>
-            <Navbar />
-
-            <div className="bg-sky-300 text-gray-700 border border-gray-300 rounded-lg mx-auto p-4 md:p-8 text-center max-w-xl mt-12">
-                {/* Image box */}
-                <div className="profile-image-container mt-2 w-36 h-36 border-4 border-white  rounded-full mx-auto mb-4 overflow-hidden">
-                    <img src={ProfileImg} alt="Profile_image" className="w-full h-full object-cover" />
-                </div>
-                {/* Details box */}
-                <div className="details-box">
-                    <h1 className="greeting-text text-xl md:text-2xl font-bold">{greeting}, <span className='text-white '>{userName.toUpperCase()}</span></h1>
-                    <p className="description-text text-sm text-yellow-600 md:text-base">Your best choice is CamSharp.</p>
-                </div>
-            </div>
-
-            <div className='mt-2 mb-2 text-center text-black text-xl font-bold'>
-                <h3 className='border-b-4  border-black'>Booking History</h3>
-            </div>
-
-            {sortedUserData.length === 0 ? (
-                <div className="text-center text-red-600 text-xl font-bold">No Bookings Found</div>
-            ) : (
-                sortedUserData.map((booking, index) => (
-                    <div key={index} className="bg-gray-400 border border-gray-300 rounded-lg mx-auto mt-4 p-4 md:p-8 max-w-xl">
-                        <div className='flex gap-3 border-b-2'>
-                            <h2 className='text-black font-bold'>Booking Date :-</h2>
-                            <p className='text-white font-bold'>{new Date(booking.createdAt).toLocaleDateString()}</p>
+            <div className="container-fluid design g-0">
+                <div className="container">
+                    <div className="row g-0">
+                        <div className="col-lg-6 col-12"> 
+                                <div className="d-flex justify-content-center">
+                                    <img src={ProfileImg} alt="Profile_image" className="image-fluid" style={{height: '300px'}} loading='lazy'/>
+                                </div>
+                                {/* Details box */}
+                                <div className="text-center">
+                                    <h1 className="fw-bold">{greeting}, <span>{userName.toUpperCase()}</span></h1>
+                                    <p>Your best choice is <span className="text-success"> CamSharp </span> .</p>
+                                </div> 
                         </div>
-                        <div className=" flex gap-4">
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-center">
-                                    <div className="rounded-full w-12 h-12 overflow-hidden border">
-                                        <img src={booking.productImageUrl} alt="Product" className="w-12 h-12 object-cover" />
+                        <div className="col-lg-6 col-12">
+                            <div className='mt-2 mb-2 text-center fw-bold'>
+                                <h3 className='border  bg-warning'>Booking History</h3>
+                            </div>
+
+                            {sortedUserData.length === 0 ? (
+                                <div className="text-center text-danger fw-bold">No Bookings Found</div>
+                            ) : (
+                                sortedUserData.map((booking, index) => (
+                                    <div key={index} className="card my-2 p-3">
+                                        <div className='d-flex '>
+                                            <h2 className='fw-bold'>Booking Date :-</h2>
+                                            <p className='fw-bold ms-3 pt-2'>{new Date(booking.createdAt).toLocaleDateString()}</p>
+                                        </div>
+                                        <div className=" d-flex justify-content-around align-items-center">
+                                            <div className="d-flex justify-content-center">
+                                                <div className="flex items-center">
+                                                    <div>
+                                                        <img src={booking.productImageUrl} alt="Product" className="img-fluid" loading='lazy' />
+                                                    </div>
+                                                    <p className="fw-bold">{booking.ProductName}</p>
+                                                </div>
+                                            </div>
+                                            <div className="">
+                                                <div className="d-flex">
+                                                    <h3 className="me-3  fw-bold">ID :- </h3>
+                                                    <h5 className='pt-1'>{booking.productId}</h5>
+                                                </div>
+                                                <div className="d-flex">
+                                                    <h3 className='fw-bold me-3'>Booked</h3>
+                                                    {booking.isBook ? (
+                                                        <span className="mt-2"><i className="fi fi-sr-check-circle text-success"></i></span>
+                                                    ) : (
+                                                        <span className="mt-2"><i className="fi fi-sr-cross-circle text-danger"></i></span>
+                                                    )}
+                                                </div>
+                                                <div className="d-flex">
+                                                    <h3 className='fw-bold me-3'>Return</h3>
+                                                    {booking.isReturn ? (
+                                                        <span className="mt-2"><i className="fi fi-sr-check-circle text-success"></i></span>
+                                                    ) : (
+                                                        <span className="mt-2"><i className="fi fi-sr-cross-circle text-danger"></i></span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <p className="text-white font-bold ml-3">{booking.ProductName}</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-4 mt-4 md:gap-20 text-black">
-                                <div className="ml-3 items-center">
-                                    <h3 className="mr-3  font-bold">ID</h3>
-                                    <h5 className='text-sm text-white font-bold'>{booking.productId}</h5>
-                                </div>
-                                <div className="items-center font-bold">
-                                    <h3>Booked</h3>
-                                    {booking.isBook ? (
-                                        <span className="ml-2"><i className="fi fi-bs-check-circle text-green-700"></i></span>
-                                    ) : (
-                                        <span className="ml-2"><i className="fi fi-bs-cross-circle text-red-600"></i></span>
-                                    )}
-                                </div>
-                                <div className="items-center font-bold">
-                                    <h3>Return</h3>
-                                    {booking.isReturn ? (
-                                        <span className="ml-2"><i className="fi fi-bs-check-circle text-green-700"></i></span>
-                                    ) : (
-                                        <span className="ml-2"><i className="fi fi-bs-cross-circle text-red-600"></i></span>
-                                    )}
-                                </div>
-                            </div>
+                                ))
+                            )}
                         </div>
                     </div>
-                ))
-            )}
+                </div>
+            </div>
 
-            <FooterBar />
+
+
+
         </>
     );
 }
+
 
 export default BookingDetails;

@@ -6,11 +6,7 @@ import './Admin.css';
 import AdminNavbar from '../Components/Common/AdminNavbar';
 
 
-
-
-
-
-function AllDetailsOfUser() {
+function AllDetailsOfUser(){
     const [fetchData, setfetchData] = useState();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -260,4 +256,5 @@ function AllDetailsOfUser() {
     )
 }
 
-export default AllDetailsOfUser
+
+export default AllDetailsOfUser;

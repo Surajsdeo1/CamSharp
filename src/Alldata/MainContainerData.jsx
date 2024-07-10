@@ -18,8 +18,7 @@ const MainContainerData = [
     },
     {
         id: 2,
-        Name: "Lens",
-       
+        Name: "Lens", 
         ImgSrc1: NikonZ5,
         ImgSrc2: NikonZ50,
         ImgSrc3: CannonR10,

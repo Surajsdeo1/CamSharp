@@ -4,7 +4,8 @@ import ProfileImg from '../Images/boy.webp';
 import AdminNavbar from '../Components/Common/AdminNavbar';
 import Config from '../utils/Config';
 import './Admin.css';
-const UserBookingDetails = () => {
+
+function UserBookingDetails(){
     const { _id, productId } = useParams();
     const [bookingDetails, setBookingDetails] = useState();
 
@@ -471,4 +472,4 @@ const UserBookingDetails = () => {
     );
 };
 
-export default UserBookingDetails;
+export default UserBookingDetails ;

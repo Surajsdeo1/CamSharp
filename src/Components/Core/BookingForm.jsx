@@ -1,30 +1,25 @@
-import React, {  useState } from 'react';
-
-
-import { useParams,Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import Config from '../../utils/Config';
 
 
 // Custom alert component
 const CustomAlert = ({ message, onClose }) => (
 
-    <div className="fixed top-0 left-0 right-0 bg-green-500 text-white text-center py-2 z-50">
+    <div className="bg-success text-white text-center py-2 my-3 z-50">
         {message}
-        <button onClick={onClose} className="ml-4 underline">Close</button>
+        <button onClick={onClose} className="btn btn-sm"><span role="img" aria-label="cross">❌</span></button>
     </div>
 );
 
 const BookingForm = () => {
-   
-
 
     const { itemId } = useParams();
-    const {name}=useParams();
+    const { name } = useParams();
     const ItemidNumber = parseInt(itemId);
-    //check  item id number
-
+    const [loading , setLoading] = useState(false);
     const initialFormData = {
-        ProductName:name,
+        ProductName: name,
         ItemId: ItemidNumber,
         quantity: "",
         date: "",
@@ -48,10 +43,8 @@ const BookingForm = () => {
 
     const onHandleSubmit = async (e) => {
         e.preventDefault();
-
-        const token = sessionStorage.getItem('token'); // Assuming the token is stored in sessionStorage
-   
-        // data save in a db
+        setLoading(true);
+        const token = sessionStorage.getItem('token');  
         try {
 
 
@@ -63,86 +56,106 @@ const BookingForm = () => {
                 },
                 body: JSON.stringify(formData),
             });
-                        
-            if(response.ok)
-                {
-                    const data= await response.json();
-                    setFormData(initialFormData);       // Reset form fields
-                    setShowAlert(true);
-                    setTimeout(() => {
-                        setShowAlert(false);
-                    }, 10000); // Hide alert after 10 seconds
-                    console.log('Booking data send in database successfully ',data);
-            
-                }
+
+            if (response.ok) {
+                const data = await response.json();
+                setFormData(initialFormData);       // Reset form fields
+                setShowAlert(true);
+                setLoading(false);
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 10000); // Hide alert after 10 seconds
+                console.log('Booking data send in database successfully ', data);
+
+            }
 
         } catch (error) {
             console.error('Error submitting booking form:', error);
+            setLoading(false);
 
         }
     };
     return (
-        <>
-            {showAlert && <CustomAlert message="Your Booking Details Will Be Sent to Your WhatsApp. Can You Please Open Your WhatsApp? ." onClose={() => setShowAlert(false)} />}
-            <div className="mt-2 mb-12">
-                <h1 className="text-2xl font-bold pl-2 text-gray-700">Booking Details</h1>
-                <div className="container mx-auto pl-1 pt-1">
-                    <form onSubmit={onHandleSubmit} className="max-w-lg mx-auto bg-gray-100 p-4 rounded-lg shadow-md">
-                        <div className=' flex items-center border-b-2 border-gray-200 gap-2 text-xl  font-bold justify-center '>
-                            <h2 className="Product-ID-field text-blue-500">Product Id:</h2>
-                            <span className='text-blue-700'>{ItemidNumber}</span>
-                        </div>
+        <> 
+        <div className="row g-0">
+            <div className="col-lg-6 col-12">
+            <section id='BookingForm'>
+                <div className="mt-2 mb-12">
+                    <h1 className="text-center fw-bold">Booking Details</h1>
+
+                    <div className="container">
+                        <form onSubmit={onHandleSubmit} className="card p-3">
+                            <small>Please Enter the Details ...</small>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <i className="fi fi-br-tally pe-2 pt-2"></i>
+
+                                <input
+                                    type="number"
+                                    id="quantity"
+                                    name="quantity"
+                                    placeholder='Quantity'
+                                    value={formData.quantity}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-control w-100"
+                                />
+                            </div>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <i className="fi fi-sr-calendar pt-2 pe-2"></i>
+                                <input type="date" id="date" name="date" placeholder='Date' value={formData.date} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="d-flex  px-2 py-1 mt-2">
+                                <i className="fi fi-sr-clock pt-2 pe-2"></i>
+                                <input type="time" id="time" name="time" placeholder='Time' value={formData.time} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <span className='pt-2 pe-2' role="img" aria-label="loading">⏳</span>
+                                <input type="text" id="duration" name="duration" placeholder='Duration in Hrs.' value={formData.duration} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <i className="fi fi-ss-land-layer-location pe-2 pt-2"></i>
+                                <input type="text" id="location" name="location" placeholder='Your Location' value={formData.location} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <i className="fi fi-sr-id-card-clip-alt pt-2 pe-2"></i>
+                                <input type="text" id="Name" name="Name" placeholder='Name' value={formData.Name} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="d-flex px-2 py-1 mt-2">
+                                <i className="fi fi-brands-whatsapp pe-2 pt-2"></i>
+                                <input type="text" id="whatsappNo" name="whatsappNo" placeholder='WhatsApp No' value={formData.whatsappNo} onChange={handleChange} required className="form-control" />
+                            </div>
+                            <div className="my-3 ">
+                                <button type="submit" className="btn btn-block rounded-6">
+                                    {loading? 
+                                    <> Booking... <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> </>
+                                    : 
+                                     <h4>Book <i className="fi fi-sr-arrow-circle-right pt-2 ps-2"></i></h4> }
+                                </button>
 
 
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-tally text-sky-500 mr-2"></i>
 
-                            <input
-                                type="number"
-                                id="quantity"
-                                name="quantity"
-                                placeholder='Quantity'
-                                value={formData.quantity}
-                                onChange={handleChange}
-                                required
-                                className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent"
-                            />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-calendar text-sky-500 mr-2"></i>
-                            <input type="date" id="date" name="date" placeholder='Date' value={formData.date} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-clock-three text-sky-500 mr-2"></i>
-                            <input type="time" id="time" name="time" placeholder='Time' value={formData.time} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-duration-alt text-sky-500 mr-2"></i>
-                            <input type="text" id="duration" name="duration" placeholder='Duration' value={formData.duration} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-marker text-sky-500 mr-2"></i>
-                            <input type="text" id="location" name="location" placeholder='Your Location' value={formData.location} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-id-card-clip-alt text-sky-500 mr-2"></i>
-                            <input type="text" id="Name" name="Name" placeholder='Name' value={formData.Name} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="border-b flex items-center px-2 py-1 mt-2">
-                            <i className="fi fi-bs-mobile-notch text-sky-500 mr-2"></i>
-                            <input type="text" id="whatsappNo" name="whatsappNo" placeholder='WhatsApp No' value={formData.whatsappNo} onChange={handleChange} required className="input-field h-8 w-full text-gray-700 focus:outline-none bg-transparent" />
-                        </div>
-                        <div className="flex justify-center  mt-2  bg-green-500  text-white p-2 rounded-md hover:bg-green-600 focus:outline-none  ">
-                            <button type="submit" className="">Book <i className="fi fi-bs-arrow-up-right-from-square ml-2 text-gray-200 "></i></button>
-                            
+                            </div>
 
-                            
+                        </form>
+                        <div className="row">
+                            <div className="col-lg-6 col-12">
+                                <div className=" bg-dark my-3 p-4   rounded-6 text-light">
+                                    Check Out Your Booking Details
+                                    <Link to={`/user-booking/${itemId}`} className="m-2">View Booking Details</Link>
+                                </div>
+                            </div>
                         </div>
 
-                    </form>
-                    <Link to={`/user-booking/${itemId}`} className="ml-2">View Booking Details</Link>
+                    </div>
+                    {showAlert && <CustomAlert message="Your Booking Details Will Be Sent to Your WhatsApp. Can You Please Open Your WhatsApp? ." onClose={() => setShowAlert(false)} />}
                 </div>
+            </section>
             </div>
+            <div className="col-lg-6 col-0 d-lg-block d-md-block d-none">
+                <img src="img/Booking_Form.png" alt="Booking form images" className='img-fluid mx-auto' loading='lazy' title='Book your camera'/>
+            </div>
+        </div>
+            
         </>
     );
 }

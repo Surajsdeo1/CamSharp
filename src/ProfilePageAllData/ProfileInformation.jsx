@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Components/Common/Navbar';
-import FooterBar from '../Components/Common/FooterBar';
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '../Images/boy.webp';
 import Config from '../utils/Config';
@@ -12,8 +10,8 @@ function ProfileInformation() {
   useEffect(() => {
     // Fetch data from the server
     const fetchUserData = async () => {
-      const token = sessionStorage.getItem('token'); 
-   
+      const token = sessionStorage.getItem('token');
+
       try {
         if (!token) {
           console.log('Token is not storing on session storage: ', token);
@@ -59,57 +57,54 @@ function ProfileInformation() {
 
   return (
     <>
-      <Navbar />
-      <FooterBar />
-      <div className="bg-sky-300 text-gray-700 border border-gray-300 rounded-lg mx-auto p-4 md:p-8 text-center max-w-xl mt-12">
-        {/* Image box */}
-        <div className="profile-image-container mt-2 w-36 h-36 border-4 border-white rounded-full mx-auto mb-4 overflow-hidden">
-          <img src={ProfileImg} alt="Profile_image" className="w-full h-full object-cover" />
-        </div>
-        {/* Details box */}
-        <div className="details-box">
-          <h1 className="greeting-text text-xl md:text-2xl font-bold">
-            {greeting}, <span className='text-white'>{userData ? userData.name.toUpperCase() : 'Loading...'}</span>
-          </h1>
-          <p className="description-text text-sm text-yellow-600 md:text-base">Your best choice is CamSharp.</p>
-        </div>
-      </div>
-      <div id="right-section" className="flex flex-col items-center lg:items-start lg:w-1/2 lg:pl-4">
-        <div id="personal-info" className="mt-16 lg:mt-24 w-full max-w-full bg-gray-400   shadow-xl rounded-lg p-4 border border-gray-300">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-black">Personal Information</h2>
-            <button className="text-white">
-              <i className="fi fi-bs-attribution-pencil"></i>
-            </button>
+      <div className="container-fluid design g-0">
+        <div className="row py-lg-5" style={{minHeight: '100vh'}}>
+
+          <div className="col-lg-6 col-12 text-center">
+            <img src={ProfileImg} alt="Profile_image" className="w-full img-fluid" style={{ height: '200px' }} />
+            <div className="details-box">
+              <h1 className="greeting-text text-xl md:text-2xl font-bold">
+                {greeting}, <span className='text-warning'>{userData ? userData.name.toUpperCase() : 'Loading...'}</span>
+              </h1>
+              <p className="text-success">Your best choice is CamSharp.</p>
+            </div>
           </div>
-          {userData ? (
-            <>
-              <div className="flex flex-col text-black">
-                <div className="flex items-center">
-                  <label htmlFor="user-name" className="font-bold">UserName:</label>
-                  <span id="user-name" className="border-b-2 ml-2 py-1 px-2 text-xl text-white rounded">{userData.name}</span>
+          <div className="col-lg-6 col-12">
+            <div className="conatiner-fluid card p-1 m-1">
+              <h2 className="text-capitalize fw-bold mb-4 text-center">Personal Information</h2>
+             
+           
+            {userData ? (
+              <>
+                <div className="d-flex flex-col justify-content-between py-lg-4">
+                  <div className="mb-4">
+                    <label htmlFor="user-name" className="fw-bold">UserName:</label>
+                    <span id="user-name" className="border p-3 rounded-6 ms-1">{userData.name}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <label htmlFor="full-name" className="fw-bold">Name:</label>
+                    <span id="full-name" className="border p-3 rounded-6 ms-1">{userData.name}</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <label htmlFor="full-name" className="font-bold">Name:</label>
-                  <span id="full-name" className="border-b-2 ml-2 py-1 px-2 text-xl text-white rounded">{userData.name}</span>
+
+                <div className="d-flex my-4">
+                  <h2 className="fw-bold mr-4 heading2">Email Address:</h2>
+                  <span id="email" className=" border   py-1 px-2 rounded-8 mx-3 heading2" style={{fontSize: '1.2rem'}}>{userData.email}</span>
                 </div>
-              </div>
 
-              <div className="flex items-center  text-black">
-                <h2 className="font-bold mr-4">Email Address:</h2>
-                <span id="email" className="border-b-2 text-white py-1 px-2 text-xl rounded-lg">{userData.email}</span>
-              </div>
-
-              <div className="flex items-center text-black">
-                <h2 className="font-bold mr-4">Mobile Number:</h2>
-                <span id="mobile-number" className="border-b-2 text-white text-xl py-1 px-2 rounded-lg">{userData.mobileNumber}</span>
-              </div>
-            </>
-          ) : (
-            <div>Loading...</div>
-          )}
+                <div className="d-flex my-4">
+                  <h2 className="fw-bold mr-4 heading2">Mobile Number:</h2>
+                  <span id="mobile-number" className="border   py-1 px-2 rounded-8 mx-2 heading2 ">{userData.mobileNumber}</span>
+                </div>
+              </>
+            ) : (
+              <div>Loading...</div>
+            )}
+ </div>
+          </div>
         </div>
       </div>
+
     </>
   );
 }
