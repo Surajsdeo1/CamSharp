@@ -87,8 +87,8 @@ function Navbar() {
                         <img
                             src="../img/logo.png"
                             height="35"
-                            title="codesaarthi"
-                            alt="Codesaarthi  Logo"
+                            title="Cam-Sharp"
+                            alt="Cam-sharp  Logo"
                             loading="lazy"
                         />
                     </Link>
@@ -177,7 +177,7 @@ function Navbar() {
                             <Link
                                 className={`nav-link ${isNavLinkActive("/Problems") ? "selected" : ""
                                     }`}
-                                to="/Gallery"
+                                to="/gallery"
                             >
                                 {" "}
                                 <i className="fi fi-sr-layout-fluid pe-2"></i>
