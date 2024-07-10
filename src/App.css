@@ -121,7 +121,7 @@ body::-webkit-scrollbar {
 }
 
 
-@media only screen and (min-width: 280px) and (max-width: 768px) {
+@media only screen and (min-width: 310px) and (max-width: 768px) {
   .design{
     margin-top: 8vh;
     margin-bottom: 8vh;

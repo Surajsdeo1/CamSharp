@@ -72,88 +72,89 @@ function AdminPage(){
 
     return (
         <>
-        <div className="bg-sky-300  min-h-screen pb-12">
-            {/* Admin Details */}
-            <div className="relative z-10">
-                <div className="text-center mb-4 pt-4">
-                    <h1 className="text-3xl font-bold text-gray-900 ">Admin</h1>
-                </div>
-                {/* Admin Profile Section */}
-                <div className="flex items-center justify-center mb-6">
-                    <div className="bg-sky-400 p-8 max-w-lg w-80 rounded-lg shadow-inner shadow-blue-500 transform transition-transform duration-500 hover:scale-105 hover:shadow-2xl ">
-                        <i className={`Notification-icon fi fi-bs-aperture ${newData ? 'text-orange-700 shake' : 'text-gray-700'}`}></i>
-                        <div className="flex flex-col items-center justify-center text-center">
-                            <h1 className="text-white text-2xl font-bold">CamSharp</h1>
-                            <p className="text-yellow-600 text-sm mt-2">Your premier destination for photography</p>
-                        </div>
-
-                        <div className="text-center mb-6 pt-2">
-
-
-                            <div className="Container bg-slate-200 shadow-lg shadow-black rounded-full w-40 h-40 ml-12">
-
-                            </div>
-                            <div className="Profile-Div absolute top-36 mt-2   left-20 ml-3  w-40 h-40 rounded-full overflow-hidden drop-shadow-xl shadow-inner shadow-blue-500">
-                                <img src={ProfileImg} alt="Profile" className="Image-Boy w-full h-full object-cover border-b-2 border-l-2 border-r-2 shadow-inner shadow-white" />
-                            </div>
-
-
-                            <h1 className="greeting-text text-xl md:text-2xl font-bold">{greeting}, </h1>
-                            <h1 className="text-xl md:text-2xl font-bold text-white mt-2">ROSHAN SINGH DEO</h1>
-                            <p className="text-sm md:text-base text-yellow-600">Your journey to success starts here, with ownCamSharp..</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* section of Booking */}
-            <div className='text-center bg-sky-400 mt-2 w-full  px-2 py-2 shadow-inner shadow-blue-500'>
-                <h1 className='text-white font-extrabold text-2xl'>Recent Booking... </h1>
-            </div>
-
-            {/* User Info */}
-            {sortedRecentBooking.map((booking, index) => (
-
-                <div key={index} className="Booking-Card bg-sky-400 shadow-lg shadow-sky-400 w-80 h-auto rounded-md mt-4 mb-6 ml-12">
-                    <div className='flex justify-between rounded-t-lg w-full bg-sky-400 border-b border-blue-500 font-bold h-6 pl-3'>
-                        <div className='flex justify-start gap-2'> <h4 className='mb-2 text-black font-bold'><span>{new Date(booking.createdAt).toLocaleDateString('en-GB')},</span></h4>
-                            <h4 className='mr-3 text-black font-bold'><span>{booking.createdTime}</span></h4></div>
-                        {booking.isReturn ? (<div className='text-xl text-black mr-4 hover:cursor-pointer' onClick={() => DeleteBooked(booking.productId)}> <i className='fi fi-bs-cross-circle mb-2  '></i></div>) : (<div className='text-black mr-2'>{booking.mobilenumber}</div>)}
-                    </div>
-                    <Link to={`/user-booking-details/${booking._id}/${booking.productId}`} key={index}>
-                        <div className='flex gap-4   bg-slate-200  shadow-inner shadow-sky-500  mx-auto mb-2  rounded-lg ml-1 mr-1 md:p-8 max-w-xl'>
-                            <div className="flex items-center justify-between  ">
-                                <div className="flex items-center  ">
-                                    <h6 className=" text-blue-700 font-extrabold ml-2">{truncateName(booking.name)}</h6>
-                                </div>
-                            </div>
-
-                            {/* Booking and Return button */}
-                            <div className="flex gap-4 mt-4">
-                                <div className="ml-8 items-center">
-                                    <h3 className="mr-4 font-bold text-black">ID</h3>
-                                    <span><h5 className='text-sm text-blue-900 font-bold'>{booking.productId}</h5></span>
-                                </div>
-                                <div className="items-center font-bold text-black">
-                                    <h3>Booked</h3>
-                                    <span className={`ml-4 ${booking.isBook ? 'text-green-700' : 'text-red-700'}`}>
-                                        <i className={`fi fi-bs-${booking.isBook ? 'check-circle' : 'cross-circle'}`}></i>
-                                    </span>
-                                </div>
-                                <div className="items-center font-bold text-black">
-                                    <h3>Return</h3>
-                                    <span className={`ml-4 ${booking.isReturn ? 'text-green-700' : 'text-red-700'}`}>
-                                        <i className={`fi fi-bs-${booking.isReturn ? 'check-circle' : 'cross-circle'}`}></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </Link>
-                </div>
-
-            ))}
-            <AdminNavbar />
+       <div class="bg-info min-vh-100 pb-3">
+  {/* <!-- Admin Details --> */}
+  <div class="position-relative z-1">
+    <div class="text-center mb-4 pt-4">
+      <h1 class="display-4 font-weight-bold text-dark">Admin</h1>
+    </div>
+    {/* <!-- Admin Profile Section --> */}
+    <div class="d-flex align-items-center justify-content-center mb-6">
+      <div class="bg-info text-center p-4 max-w-lg w-80 rounded shadow-inner shadow-primary transform transition-transform duration-500 hover-scale-up hover-shadow-2xl">
+        <i class={`Notification-icon fi fi-bs-aperture ${newData ? 'text-warning animate-shake' : 'text-dark'}`}></i>
+        <div class="d-flex flex-column align-items-center justify-content-center">
+          <h1 class="text-white h2 font-weight-bold">CamSharp</h1>
+          <p class="text-warning mt-2">Your premier destination for photography</p>
         </div>
+
+        <div class="text-center mb-6 pt-2">
+          <div class="bg-light shadow-lg rounded-circle w-40 h-40 ml-3"></div>
+          <div class="position-absolute top-36 mt-2 left-20 ml-3 w-40 h-40 rounded-circle overflow-hidden shadow-inner shadow-primary">
+            <img src={ProfileImg} alt="Profile" class="w-100 h-100 object-cover border border-2 shadow-inner shadow-white" />
+          </div>
+          <h1 class="h5 font-weight-bold">{greeting}, </h1>
+          <h1 class="h5 font-weight-bold text-white mt-2">ROSHAN SINGH DEO</h1>
+          <p class="text-warning">Your journey to success starts here, with ownCamSharp..</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* <!-- Section of Booking --> */}
+  <div class="text-center bg-info mt-2 w-100 px-2 py-2 shadow-inner shadow-primary">
+    <h1 class="text-white font-weight-extra-bold h4">Recent Booking...</h1>
+  </div>
+
+  {/* <!-- User Info --> */}
+  {sortedRecentBooking.map((booking, index) => (
+    <div key={index} class="bg-info shadow-lg w-80 h-auto rounded mt-4 mb-6 ml-3">
+      <div class="d-flex justify-content-between rounded-top w-100 bg-info border-bottom border-primary font-weight-bold h-6 pl-3">
+        <div class="d-flex justify-start gap-2">
+          <h4 class="mb-2 text-dark font-weight-bold"><span>{new Date(booking.createdAt).toLocaleDateString('en-GB')},</span></h4>
+          <h4 class="mr-3 text-dark font-weight-bold"><span>{booking.createdTime}</span></h4>
+        </div>
+        {booking.isReturn ? (
+          <div class="h5 text-dark mr-4 hover-cursor-pointer" onClick={() => DeleteBooked(booking.productId)}>
+            <i class="fi fi-bs-cross-circle mb-2"></i>
+          </div>
+        ) : (
+          <div class="text-dark mr-2">{booking.mobilenumber}</div>
+        )}
+      </div>
+      <Link to={`/user-booking-details/${booking._id}/${booking.productId}`} key={index}>
+        <div class="d-flex gap-4 bg-light shadow-inner shadow-primary mx-auto mb-2 rounded ml-1 mr-1 p-2 max-w-xl">
+          <div class="d-flex align-items-center justify-between">
+            <div class="d-flex align-items-center">
+              <h6 class="text-primary font-weight-extra-bold ml-2">{truncateName(booking.name)}</h6>
+            </div>
+          </div>
+
+          {/* <!-- Booking and Return button --> */}
+          <div class="d-flex gap-4 mt-4">
+            <div class="ml-3 align-items-center">
+              <h3 class="mr-4 font-weight-bold text-dark">ID</h3>
+              <span><h5 class="small text-primary font-weight-bold">{booking.productId}</h5></span>
+            </div>
+            <div class="align-items-center font-weight-bold text-dark">
+              <h3>Booked</h3>
+              <span class={`ml-4 ${booking.isBook ? 'text-success' : 'text-danger'}`}>
+                <i class={`fi fi-bs-${booking.isBook ? 'check-circle' : 'cross-circle'}`}></i>
+              </span>
+            </div>
+            <div class="align-items-center font-weight-bold text-dark">
+              <h3>Return</h3>
+              <span class={`ml-4 ${booking.isReturn ? 'text-success' : 'text-danger'}`}>
+                <i class={`fi fi-bs-${booking.isReturn ? 'check-circle' : 'cross-circle'}`}></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </Link>
+    </div>
+  ))}
+  <AdminNavbar />
+</div>
+
         </>
     );
 };
