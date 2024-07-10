@@ -12,7 +12,7 @@ function Gallery() {
                 <h5 className="card-title mb-0">Suraj Singh Deo</h5>
                 <h5 className="text-primary mb-0">Download</h5>
               </div>
-              <img src={profileImage} className="card-img-top" alt="Post" />
+              <img src={ profileImages} className="card-img-top" alt="Post" />
               <div className="card-body d-flex flex-column">
                 <p className="card-text">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium molestias quis nulla earum commodi atque!
