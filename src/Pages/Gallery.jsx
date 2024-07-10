@@ -6,8 +6,9 @@ function Gallery() {
    <>
     <div className="container mt-4">
         <div className="row">
+        {[1,2,3,4,5].map((items,index)=>(
           <div className="col-md-6 col-lg-4 mb-4">
-            {[1,2,3,4,5].map((items,index)=>(
+          
             <div key={index} className="card h-100">
               <div className="card-header d-flex justify-content-between border-0 bg-transparent p-2">
                 <h5 className="card-title mb-0">Suraj Singh Deo</h5>
@@ -39,8 +40,9 @@ function Gallery() {
                 </div>
               </div>
             </div>
-            ))}
+            
           </div>
+          ))}
         </div>
       </div>
    </>
