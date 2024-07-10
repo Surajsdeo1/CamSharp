@@ -23,19 +23,19 @@ function Gallery() {
                   <div className="d-flex justify-content-between align-items-center mb-2">
                     <div className="d-flex align-items-center gap-4">
                       <div className="text-center">
-                        <button className="btn btn-primary"><i class="fi fi-bs-heart"></i></button>
+                        <span className="btn btn-primary"><i class="fi fi-bs-heart"></i></span>
                         <h1 className="mt-2 mb-0"><span className="text-muted">15 likes</span></h1>
                       </div>
                       <div className="text-center">
-                        <button className="btn btn-primary"><i class="fi fi-bs-comment-alt"></i></button>
+                        <span className="btn btn-primary"><i class="fi fi-bs-comment-alt"></i></span>
                         <h1 className="mt-2 mb-0"><span className="text-muted">15 comments</span></h1>
                       </div>
                       <div className="text-center">
-                        <button className="btn btn-primary"><i class="fi fi-bs-share"></i></button>
+                        <span className="btn btn-primary"><i class="fi fi-bs-share"></i></span>
                         <h1 className="mt-2 mb-0"><span className="text-muted">15 shares</span></h1>
                       </div>
                     </div>
-                    <button className="btn btn-primary">Share</button>
+                   <span> <i class="fi fi-bs-menu-dots-vertical"></i></span> 
                   </div>
                 </div>
               </div>
